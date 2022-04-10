@@ -9,37 +9,36 @@ import UIKit
 
 
 
-class MainUICollectionVC: UICollectionViewController {
+class MainUICollectionVC: UICollectionViewController{
+    
+    private let searchController = UISearchController(searchResultsController: nil)
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = .white
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = .lightGray
         collectionView.register(HomeCollectionCell.self,
                                 forCellWithReuseIdentifier: HomeCollectionCell.identifier)
+        searchBarConfigure()
     }
     
-    // numberOfItemsInSection
-    override func collectionView(_ collectionView: UICollectionView,
-                                 numberOfItemsInSection section: Int) -> Int {
-        return 5
+    
+    
+    private func  searchBarConfigure() {
+        navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.searchController = self.searchController
+        searchController.searchBar.tintColor  = .black
+        searchController.searchBar.delegate = self
+        searchController.searchBar.searchBarStyle = .minimal
+        searchController.searchBar.searchTextField.backgroundColor = .white
+        searchController.searchBar.searchTextField.defaultTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        searchController.searchBar.barTintColor = .black
+       
     }
     
-    // cellForItemAt
-    override func collectionView(_ collectionView: UICollectionView,
-                                 cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        guard let homeCell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionCell.identifier, for: indexPath) as? HomeCollectionCell else {
-            return UICollectionViewCell()
-        }
-        
-        homeCell.backgroundColor = UIColor(hue: CGFloat(drand48()),
-                                           saturation: 1,
-                                           brightness: 1,
-                                           alpha: 1)
-        homeCell.layer.cornerRadius = 25
-        return homeCell
-    }
-    
+   
     
     
     init(){
@@ -59,7 +58,48 @@ extension MainUICollectionVC: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: view.frame.width - 15,
-                      height: 200)
+        return CGSize(width: view.frame.width - 20,
+                      height: 180)
     }
+}
+
+
+//MARK: - SearchBarDelegate
+extension MainUICollectionVC: UISearchBarDelegate  {
+    
+}
+
+
+//MARK: -  CollectionView funcs
+extension MainUICollectionVC {
+    
+    
+    // numberOfItemsInSection
+    override func collectionView(_ collectionView: UICollectionView,
+                                 numberOfItemsInSection section: Int) -> Int {
+       return 7
+    }
+
+    
+    // cellForItemAt
+    override func collectionView(_ collectionView: UICollectionView,
+                                 cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        guard let homeCell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionCell.identifier, for: indexPath) as? HomeCollectionCell else {
+            return UICollectionViewCell()
+        }
+        
+        homeCell.backgroundColor = UIColor(hue: CGFloat(drand48()),
+                                           saturation: 1,
+                                           brightness: 1,
+                                           alpha: 1)
+        homeCell.layer.cornerRadius = 25
+        return homeCell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailsVC = DetailsVC()
+        navigationController?.pushViewController(detailsVC, animated: true)
+    }
+    
 }
