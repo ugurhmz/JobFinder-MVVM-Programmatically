@@ -11,9 +11,10 @@
 		6369453228027B80007137C9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6369453128027B80007137C9 /* SceneDelegate.swift */; };
 		6369453A28027B80007137C9 /* GithubJobs_APP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6369453828027B80007137C9 /* GithubJobs_APP.xcdatamodeld */; };
 		6369453C28027B80007137C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6369453B28027B80007137C9 /* Assets.xcassets */; };
-		6369454D28027FA6007137C9 /* MainUICollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6369454C28027FA6007137C9 /* MainUICollectionVC.swift */; };
+		6369454D28027FA6007137C9 /* MainCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6369454C28027FA6007137C9 /* MainCollectionVC.swift */; };
 		6369454F28028106007137C9 /* HomeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6369454E28028106007137C9 /* HomeCollectionCell.swift */; };
 		637D1A622802BFD5002AD92C /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637D1A612802BFD5002AD92C /* DetailsVC.swift */; };
+		637D1A652802C9F8002AD92C /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637D1A642802C9F8002AD92C /* Extension+UIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,9 +24,10 @@
 		6369453928027B80007137C9 /* GithubJobs_APP.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GithubJobs_APP.xcdatamodel; sourceTree = "<group>"; };
 		6369453B28027B80007137C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6369454028027B80007137C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6369454C28027FA6007137C9 /* MainUICollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainUICollectionVC.swift; sourceTree = "<group>"; };
+		6369454C28027FA6007137C9 /* MainCollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionVC.swift; sourceTree = "<group>"; };
 		6369454E28028106007137C9 /* HomeCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionCell.swift; sourceTree = "<group>"; };
 		637D1A612802BFD5002AD92C /* DetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
+		637D1A642802C9F8002AD92C /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		6369452E28027B80007137C9 /* GithubJobs-APP */ = {
 			isa = PBXGroup;
 			children = (
+				637D1A632802C9EB002AD92C /* Extensions */,
 				6369454728027C51007137C9 /* Cells */,
 				6369454B28027C6A007137C9 /* Core */,
 				6369454A28027C65007137C9 /* Views */,
@@ -100,7 +103,7 @@
 		6369454A28027C65007137C9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6369454C28027FA6007137C9 /* MainUICollectionVC.swift */,
+				6369454C28027FA6007137C9 /* MainCollectionVC.swift */,
 				637D1A612802BFD5002AD92C /* DetailsVC.swift */,
 			);
 			path = Views;
@@ -116,6 +119,14 @@
 				6369453828027B80007137C9 /* GithubJobs_APP.xcdatamodeld */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		637D1A632802C9EB002AD92C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				637D1A642802C9F8002AD92C /* Extension+UIView.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,12 +198,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				637D1A652802C9F8002AD92C /* Extension+UIView.swift in Sources */,
 				6369454F28028106007137C9 /* HomeCollectionCell.swift in Sources */,
 				637D1A622802BFD5002AD92C /* DetailsVC.swift in Sources */,
 				6369453A28027B80007137C9 /* GithubJobs_APP.xcdatamodeld in Sources */,
 				6369453028027B80007137C9 /* AppDelegate.swift in Sources */,
 				6369453228027B80007137C9 /* SceneDelegate.swift in Sources */,
-				6369454D28027FA6007137C9 /* MainUICollectionVC.swift in Sources */,
+				6369454D28027FA6007137C9 /* MainCollectionVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

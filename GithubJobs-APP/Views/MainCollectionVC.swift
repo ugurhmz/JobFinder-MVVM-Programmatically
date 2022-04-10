@@ -9,7 +9,7 @@ import UIKit
 
 
 
-class MainUICollectionVC: UICollectionViewController{
+class MainCollectionVC: UICollectionViewController{
     
     private let searchController = UISearchController(searchResultsController: nil)
 
@@ -21,8 +21,7 @@ class MainUICollectionVC: UICollectionViewController{
     }
     
     private func setupViews() {
-        collectionView.delegate = self
-        collectionView.dataSource = self
+
         collectionView.backgroundColor = .lightGray
         collectionView.register(HomeCollectionCell.self,
                                 forCellWithReuseIdentifier: HomeCollectionCell.identifier)
@@ -76,7 +75,7 @@ class MainUICollectionVC: UICollectionViewController{
 
 
 //MARK: - DelegateFlowLayout
-extension MainUICollectionVC: UICollectionViewDelegateFlowLayout {
+extension MainCollectionVC: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -85,18 +84,33 @@ extension MainUICollectionVC: UICollectionViewDelegateFlowLayout {
         return CGSize(width: view.frame.width - 20,
                       height: 180)
     }
+    
+   
+   
 }
 
 
 //MARK: - SearchBarDelegate
-extension MainUICollectionVC: UISearchBarDelegate  {
+extension MainCollectionVC: UISearchBarDelegate  {
     
 }
 
 
 //MARK: -  CollectionView funcs
-extension MainUICollectionVC {
+extension MainCollectionVC {
     
+    //  Navbar  <- Olan Uzaklığı.  -> TabBar
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 20.0, left: 1.0, bottom: 20, right: 1.0)
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                            layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+          return 20
+     }
     
     // numberOfItemsInSection
     override func collectionView(_ collectionView: UICollectionView,
@@ -104,6 +118,7 @@ extension MainUICollectionVC {
        return 7
     }
 
+   
     
     // cellForItemAt
     override func collectionView(_ collectionView: UICollectionView,
@@ -112,11 +127,8 @@ extension MainUICollectionVC {
         guard let homeCell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionCell.identifier, for: indexPath) as? HomeCollectionCell else {
             return UICollectionViewCell()
         }
+  
         
-        homeCell.backgroundColor = UIColor(hue: CGFloat(drand48()),
-                                           saturation: 1,
-                                           brightness: 1,
-                                           alpha: 1)
         homeCell.layer.cornerRadius = 25
         return homeCell
     }
@@ -125,5 +137,7 @@ extension MainUICollectionVC {
         let detailsVC = DetailsVC()
         navigationController?.pushViewController(detailsVC, animated: true)
     }
+    
+  
     
 }
