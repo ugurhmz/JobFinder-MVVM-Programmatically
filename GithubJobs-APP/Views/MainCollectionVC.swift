@@ -12,7 +12,18 @@ import UIKit
 class MainCollectionVC: UICollectionViewController{
     
     private let searchController = UISearchController(searchResultsController: nil)
-
+    
+    let jobTitles = ["All","iOS", "FullStack", "Front-end"]
+    
+    lazy var segmentedControl: UISegmentedControl = {
+        let control = UISegmentedControl(items: jobTitles)
+        control.translatesAutoresizingMaskIntoConstraints = false
+        control.backgroundColor = .black
+        control.selectedSegmentIndex = 0
+        control.layer.cornerRadius = 10
+       
+        return control
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,12 +32,23 @@ class MainCollectionVC: UICollectionViewController{
     }
     
     private func setupViews() {
+        view.addSubview(segmentedControl)
+        segmentedControlConfigure()
 
         collectionView.backgroundColor = .lightGray
         collectionView.register(HomeCollectionCell.self,
                                 forCellWithReuseIdentifier: HomeCollectionCell.identifier)
     }
     
+    private func segmentedControlConfigure(){
+        segmentedControl.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                                leading: view.leadingAnchor,
+                                bottom:  collectionView.topAnchor,
+                                trailing: view.trailingAnchor,
+                                padding: .init(top: 10, left: 20, bottom: 30, right: 20),
+                                size: .init(width: 100, height: 70)
+        )
+    }
     
     private func  searchBarConfigure() {
         customSearchBarStyle()
@@ -82,7 +104,7 @@ extension MainCollectionVC: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return CGSize(width: view.frame.width - 20,
-                      height: 180)
+                      height: 200)
     }
     
    
@@ -103,7 +125,7 @@ extension MainCollectionVC {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 20.0, left: 1.0, bottom: 20, right: 1.0)
+        return UIEdgeInsets(top: 20.0, left: 5.0, bottom: 20, right: 5.0)
         
     }
     
