@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import SafariServices
+
 
 class DetailsVC: UIViewController {
     
-    
+    var myNumber = 0
+    var companyURL = "https://www.youtube.com.tr/"
+    var applyURL = "https://www.google.com.tr/"
     
     private let companyImage = AspectFitImageView(image: UIImage(systemName: "house"), cornerRadius: 12)
     
@@ -63,7 +67,7 @@ class DetailsVC: UIViewController {
         tv.font = .systemFont(ofSize: 15)
         tv.textAlignment = .left
         tv.backgroundColor = .cyan
-        tv.text = "orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+        tv.text = "lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
         tv.layer.cornerRadius = 12
         tv.isEditable = false
         tv.textColor = .black
@@ -91,8 +95,9 @@ class DetailsVC: UIViewController {
         super.viewDidLoad()
         setupViews()
         setConstraints()
-        view.backgroundColor = .lightGray
-        
+        addTargetConfig()
+        view.backgroundColor = .white
+       
     }
     
     private func setupViews() {
@@ -101,7 +106,33 @@ class DetailsVC: UIViewController {
             topStackView.addArrangedSubview($0)
         }
         
+    }
+    
+    private func addTargetConfig(){
+        companyWebSiteButton.addTarget(self, action: #selector(companyGoWebSite), for: .touchUpInside)
+        applyButton.addTarget(self, action: #selector(applyButtonHandle), for: .touchUpInside)
+    }
+    
+    @objc func companyGoWebSite(){
        
+        if companyURL.isEmpty {
+            let alertControl = UIAlertController(title: "Link broken", message: nil, preferredStyle: .alert)
+            alertControl.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alertControl, animated: true)
+        }
+        
+        guard let url = URL(string: companyURL) else { return }
+        let safariService = SFSafariViewController(url: url)
+        self.present(safariService, animated: true)
+    }
+    
+    @objc func applyButtonHandle(){
+       print("click")
+        
+        self.myNumber += 1
+        NotificationCenter.default.post(name: NSNotification.Name("refreshTableView"),
+                                        object: myNumber)
+      
     }
     
     
@@ -127,9 +158,9 @@ class DetailsVC: UIViewController {
                                bottom: nil,
                                trailing: view.trailingAnchor,
                                padding: .init(top: 10,
-                                              left: 20,
+                                              left: 10,
                                               bottom: 20,
-                                              right: 20))
+                                              right: 10))
         
         applyButton.anchor(top: descriptionText.bottomAnchor,
                            leading: view.leadingAnchor,

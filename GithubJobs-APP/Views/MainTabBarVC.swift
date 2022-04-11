@@ -8,16 +8,18 @@
 import UIKit
 
 class MainTabBarVC: UITabBarController {
-
+    var badgeCount = 0 
+    // tabbar Navigation
+    let homeTab = UINavigationController(rootViewController: MainCollectionVC())
+    let sponsoringCompanies =  UINavigationController(rootViewController: CompaniesVC())
+    var downloadedJob = UINavigationController(rootViewController: DownloadedListVC())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .systemBackground
         
-        // tabbar Navigation
-        let homeTab = UINavigationController(rootViewController: MainCollectionVC())
-        let sponsoringCompanies =  UINavigationController(rootViewController: CompaniesVC())
-        let downloadedJob = UINavigationController(rootViewController: DownloadedListVC())
+    
         
         
         // tabBar icons
@@ -29,15 +31,24 @@ class MainTabBarVC: UITabBarController {
         homeTab.title = "Home"
         sponsoringCompanies.title = "Companies"
         downloadedJob.title = "Download"
-        tabBar.tintColor = .white
-        tabBar.barTintColor = .purple
-       
+        tabBar.tintColor = .black
+        tabBar.barTintColor = .white
         
         setViewControllers([homeTab, sponsoringCompanies, downloadedJob], animated: true)
-        
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(badgeINC),
+                                               name: NSNotification.Name("refreshTableView"),
+                                               object: nil)
     }
     
+    @objc func badgeINC(_ notification: Notification){
+        if let myNum = notification.object as? Int {
+            downloadedJob.tabBarItem.badgeValue = "\(myNum)"
+        }
+    }
 
   
 
 }
+

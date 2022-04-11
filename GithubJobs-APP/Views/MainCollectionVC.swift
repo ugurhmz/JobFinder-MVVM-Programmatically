@@ -88,9 +88,9 @@ class MainCollectionVC: UICollectionViewController{
             let navBarAppearance = UINavigationBarAppearance()
             //navBarAppearance.configureWithOpaqueBackground()
 
-            navBarAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,NSAttributedString.Key.font: UIFont(name: "Chalkduster", size: 28.0)!]
-            navBarAppearance.backgroundColor = .purple
-            navigationController?.navigationBar.barStyle = .black
+            navBarAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,NSAttributedString.Key.font: UIFont(name: "Chalkduster", size: 32.0)!]
+           
+             navigationController?.navigationBar.barStyle = .black
             navigationController?.navigationBar.standardAppearance = navBarAppearance
             navigationController?.navigationBar.compactAppearance = navBarAppearance
             navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
