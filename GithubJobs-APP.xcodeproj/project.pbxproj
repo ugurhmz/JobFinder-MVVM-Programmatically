@@ -10,6 +10,7 @@
 		63256E102803FD9D00135936 /* MainTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63256E0F2803FD9D00135936 /* MainTabBarVC.swift */; };
 		63256E122803FE2900135936 /* CompaniesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63256E112803FE2900135936 /* CompaniesVC.swift */; };
 		63256E142803FE7B00135936 /* DownloadedListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63256E132803FE7B00135936 /* DownloadedListVC.swift */; };
+		63256E162804283D00135936 /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63256E152804283D00135936 /* Extension+UIColor.swift */; };
 		6369453028027B80007137C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6369452F28027B80007137C9 /* AppDelegate.swift */; };
 		6369453228027B80007137C9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6369453128027B80007137C9 /* SceneDelegate.swift */; };
 		6369453A28027B80007137C9 /* GithubJobs_APP.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6369453828027B80007137C9 /* GithubJobs_APP.xcdatamodeld */; };
@@ -24,6 +25,7 @@
 		63256E0F2803FD9D00135936 /* MainTabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarVC.swift; sourceTree = "<group>"; };
 		63256E112803FE2900135936 /* CompaniesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesVC.swift; sourceTree = "<group>"; };
 		63256E132803FE7B00135936 /* DownloadedListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedListVC.swift; sourceTree = "<group>"; };
+		63256E152804283D00135936 /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
 		6369452C28027B80007137C9 /* GithubJobs-APP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GithubJobs-APP.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6369452F28027B80007137C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6369453128027B80007137C9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				637D1A642802C9F8002AD92C /* Extension+UIView.swift */,
+				63256E152804283D00135936 /* Extension+UIColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 				6369454D28027FA6007137C9 /* MainCollectionVC.swift in Sources */,
 				63256E102803FD9D00135936 /* MainTabBarVC.swift in Sources */,
 				63256E122803FE2900135936 /* CompaniesVC.swift in Sources */,
+				63256E162804283D00135936 /* Extension+UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

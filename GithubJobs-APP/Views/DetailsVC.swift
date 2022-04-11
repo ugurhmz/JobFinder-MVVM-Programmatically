@@ -8,14 +8,138 @@
 import UIKit
 
 class DetailsVC: UIViewController {
-
+    
+    
+    
+    private let companyImage = AspectFitImageView(image: UIImage(systemName: "house"), cornerRadius: 12)
+    
+    private let companyLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Vodafone"
+        label.font = .boldSystemFont(ofSize: 17)
+        label.textColor = .black
+        return label
+    }()
+    
+    private let positionLabel: UILabel = {
+        let label = UILabel()
+        label.text = "iOS Developer"
+        label.font = .systemFont(ofSize: 17)
+        label.textColor = .black
+       
+        return label
+    }()
+    
+    private let workTimeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Full Time"
+        label.font = .systemFont(ofSize: 17)
+        label.textColor = .black
+     
+        return label
+    }()
+    
+    private let locationLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Seatlle, WA"
+        label.font = .systemFont(ofSize: 17)
+        label.numberOfLines = 0
+        label.textColor = .black
+       
+        return label
+    }()
+    
+    private let companyWebSiteButton: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("Company Website", for: .normal)
+        btn.tintColor = .white
+        btn.backgroundColor =  UIColor.myRGB(red: 84, green: 99 , blue: 255)
+        btn.layer.cornerRadius = 15
+        return btn
+    }()
+    
+    private let descriptionText: UITextView = {
+        let tv = UITextView()
+        tv.font = .systemFont(ofSize: 15)
+        tv.textAlignment = .left
+        tv.backgroundColor = .cyan
+        tv.text = "orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+        tv.layer.cornerRadius = 12
+        tv.isEditable = false
+        tv.textColor = .black
+        return tv
+    }()
+    
+    private let applyButton: UIButton = {
+        let btn = UIButton()
+        btn.setTitle("Apply", for: .normal)
+        btn.tintColor = .white
+        btn.backgroundColor = UIColor.myRGB(red: 84, green: 99 , blue: 255)
+        btn.layer.cornerRadius = 15
+        return btn
+    }()
+    
+    private let topStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        return stackView
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = .orange
+        setupViews()
+        setConstraints()
+        view.backgroundColor = .lightGray
+        
     }
     
+    private func setupViews() {
+        [ companyImage ,topStackView, descriptionText, applyButton].forEach { view.addSubview($0)}
+        [companyLabel,positionLabel, workTimeLabel, locationLabel, companyWebSiteButton].forEach{
+            topStackView.addArrangedSubview($0)
+        }
+        
+       
+    }
+    
+    
+    private func setConstraints(){
+        companyImage.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                            leading: nil,
+                            bottom: nil,
+                            trailing: view.trailingAnchor,
+                            padding: .init(top: 10, left: 10, bottom: 10, right: 10),
+                            size: .init(width: 80, height: 100))
+        
+        topStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                            leading: view.leadingAnchor,
+                            bottom: nil,
+                            trailing: companyImage.leadingAnchor,
+                            padding: .init(top: 10, left: 20, bottom:20, right:20))
+        
+        
+        companyWebSiteButton.anchor(top: nil, leading: nil, bottom: nil, trailing: nil, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: 100, height: 50))
+        
+        descriptionText.anchor(top: topStackView.bottomAnchor,
+                               leading: view.leadingAnchor,
+                               bottom: nil,
+                               trailing: view.trailingAnchor,
+                               padding: .init(top: 10,
+                                              left: 20,
+                                              bottom: 20,
+                                              right: 20))
+        
+        applyButton.anchor(top: descriptionText.bottomAnchor,
+                           leading: view.leadingAnchor,
+                           bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                           trailing: view.trailingAnchor,
+                           padding: .init(top: 10,
+                                          left:80,
+                                          bottom: 30,
+                                          right: 80))
+    }
 
   
 

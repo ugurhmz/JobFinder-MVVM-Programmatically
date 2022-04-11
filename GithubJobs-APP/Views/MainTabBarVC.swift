@@ -31,6 +31,8 @@ class MainTabBarVC: UITabBarController {
         downloadedJob.title = "Download"
         tabBar.tintColor = .white
         tabBar.barTintColor = .purple
+       
+        
         setViewControllers([homeTab, sponsoringCompanies, downloadedJob], animated: true)
         
     }

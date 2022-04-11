@@ -13,7 +13,7 @@ class MainCollectionVC: UICollectionViewController{
     
     private let searchController = UISearchController(searchResultsController: nil)
     
-    let jobTitles = ["All","iOS", "FullStack", "Front-end"]
+    let jobTitles = ["All","iOS", "FullStack"]
     
     lazy var segmentedControl: UISegmentedControl = {
         let control = UISegmentedControl(items: jobTitles)
@@ -21,9 +21,28 @@ class MainCollectionVC: UICollectionViewController{
         control.backgroundColor = .black
         control.selectedSegmentIndex = 0
         control.layer.cornerRadius = 10
+        control.layer.masksToBounds = true
+        control.addTarget(self, action: #selector(handleSegmentedControlValueChanged(_:)), for: .valueChanged)
+        
        
         return control
     }()
+    
+    
+    
+    @objc func handleSegmentedControlValueChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            print("all")
+            
+        case 1:
+            print("ios")
+        case 2:
+            print("full")
+        default:
+            break
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +64,7 @@ class MainCollectionVC: UICollectionViewController{
                                 leading: view.leadingAnchor,
                                 bottom:  collectionView.topAnchor,
                                 trailing: view.trailingAnchor,
-                                padding: .init(top: 10, left: 20, bottom: 30, right: 20),
+                                padding: .init(top: 5, left: 20, bottom: 30, right: 20),
                                 size: .init(width: 100, height: 70)
         )
     }
@@ -125,7 +144,7 @@ extension MainCollectionVC {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 20.0, left: 5.0, bottom: 20, right: 5.0)
+        return UIEdgeInsets(top: 56.0, left: 5.0, bottom: 20, right: 5.0)
         
     }
     

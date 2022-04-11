@@ -16,7 +16,7 @@ class HomeCollectionCell: UICollectionViewCell {
         let iv = UIImageView()
         iv.image = UIImage(systemName: "house")
         iv.contentMode = .scaleAspectFill
-        iv.translatesAutoresizingMaskIntoConstraints = false
+  
         return iv
     }()
     
@@ -26,7 +26,7 @@ class HomeCollectionCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 22)
         label.font = .boldSystemFont(ofSize: 18)
         label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
+     
         return label
     }()
     
@@ -36,7 +36,7 @@ class HomeCollectionCell: UICollectionViewCell {
         label.text = "iOS Developer"
         label.font = .systemFont(ofSize: 17)
         label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
+       
         return label
     }()
     
@@ -45,7 +45,7 @@ class HomeCollectionCell: UICollectionViewCell {
         label.text = "Full Time"
         label.font = .systemFont(ofSize: 17)
         label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
+        
         return label
     }()
     
@@ -55,7 +55,7 @@ class HomeCollectionCell: UICollectionViewCell {
         label.font = .systemFont(ofSize: 17)
         label.numberOfLines = 0
         label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
+      
         return label
     }()
     
@@ -66,6 +66,8 @@ class HomeCollectionCell: UICollectionViewCell {
         setupViews()
         setConstraints()
     }
+    
+    
     
     private func setupViews() {
         addSubview(imgCompany)
@@ -90,13 +92,15 @@ extension HomeCollectionCell {
         
         let stackView = UIStackView(arrangedSubviews: [companyNameLabel,positionLabel, workTimeLabel, locationLabel])
             addSubview(stackView)
-            stackView.anchor(top: topAnchor,
+        stackView.anchor(top: topAnchor,
                              leading: leadingAnchor,
                              bottom: nil,
                              trailing: imgCompany.leadingAnchor,
                              padding: .init(top: 10, left: 20, bottom: 0, right: 20))
            stackView.axis = .vertical
            stackView.spacing = 10
+                                
+      
         
     }
 }
