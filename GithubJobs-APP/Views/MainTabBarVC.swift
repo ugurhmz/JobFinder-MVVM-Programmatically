@@ -32,7 +32,7 @@ class MainTabBarVC: UITabBarController {
         sponsoringCompanies.title = "Companies"
         downloadedJob.title = "Download"
         tabBar.tintColor = .black
-        tabBar.barTintColor = .white
+        tabBar.barTintColor = .lightGray
         
         setViewControllers([homeTab, sponsoringCompanies, downloadedJob], animated: true)
 

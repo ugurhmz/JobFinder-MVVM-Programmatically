@@ -14,6 +14,8 @@ class DetailsVC: UIViewController {
     var myNumber = 0
     var companyURL = "https://www.youtube.com.tr/"
     var applyURL = "https://www.google.com.tr/"
+    var zoomGesture = UIPinchGestureRecognizer()
+    
     
     private let companyImage = AspectFitImageView(image: UIImage(systemName: "house"), cornerRadius: 12)
     
@@ -90,6 +92,14 @@ class DetailsVC: UIViewController {
         return stackView
     }()
     
+   
+    
+    @objc func textZoomHandle(sender: UIPinchGestureRecognizer){
+        var pointSize = descriptionText.font?.pointSize
+        pointSize = ((sender.velocity > 0) ? 1 : -1) * 1 + pointSize!
+        descriptionText.font = UIFont(name: "arial", size: pointSize!)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,6 +116,9 @@ class DetailsVC: UIViewController {
             topStackView.addArrangedSubview($0)
         }
         
+        zoomGesture = UIPinchGestureRecognizer(target: self,
+                                               action: #selector(textZoomHandle(sender:)))
+        descriptionText.addGestureRecognizer(zoomGesture)
     }
     
     private func addTargetConfig(){
