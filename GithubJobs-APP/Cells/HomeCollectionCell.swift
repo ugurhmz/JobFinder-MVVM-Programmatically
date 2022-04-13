@@ -66,8 +66,22 @@ class HomeCollectionCell: UICollectionViewCell {
         let btn = UIButton()
         btn.setBackgroundImage(UIImage(systemName: "bookmark.square"), for: UIControl.State.normal)
         btn.tintColor = .black
+        btn.addTarget(self, action: #selector(bookmarkClickHandle), for: .touchUpInside)
         return btn
     }()
+    
+   
+
+//MARK: - bookmarkIconBtn click Handle and send MainVC
+    var callBackAddBookmark: ( () -> ())?
+    
+    @objc func bookmarkClickHandle(){
+   
+        self.callBackAddBookmark?()
+    }
+    
+    
+//MARK: - SetupViews
     
     override init(frame: CGRect) {
         super.init(frame: frame)

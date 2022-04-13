@@ -100,7 +100,8 @@ class DetailsVC: UIViewController {
         descriptionText.font = UIFont(name: "arial", size: pointSize!)
     }
     
-    
+
+//MARK: -  SetupViews 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -121,6 +122,8 @@ class DetailsVC: UIViewController {
         descriptionText.addGestureRecognizer(zoomGesture)
     }
     
+    
+//MARK: - DetailsVC buttons handle
     private func addTargetConfig(){
         companyWebSiteButton.addTarget(self, action: #selector(companyGoWebSite), for: .touchUpInside)
         applyButton.addTarget(self, action: #selector(applyButtonHandle), for: .touchUpInside)
@@ -140,7 +143,6 @@ class DetailsVC: UIViewController {
     }
     
     @objc func applyButtonHandle(){
-       print("click")
         
         self.myNumber += 1
         NotificationCenter.default.post(name: NSNotification.Name("refreshTableView"),
@@ -149,6 +151,7 @@ class DetailsVC: UIViewController {
     }
     
     
+//MARK: - Constraints
     private func setConstraints(){
         companyImage.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                             leading: nil,

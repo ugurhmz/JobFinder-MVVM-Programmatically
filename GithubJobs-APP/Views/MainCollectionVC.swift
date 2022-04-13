@@ -126,6 +126,7 @@ extension MainCollectionVC: UICollectionViewDelegateFlowLayout {
                       height: 200)
     }
     
+
    
    
 }
@@ -139,6 +140,7 @@ extension MainCollectionVC: UISearchBarDelegate  {
 
 //MARK: -  CollectionView funcs
 extension MainCollectionVC {
+    
     
     //  Navbar  <- Olan Uzaklığı.  -> TabBar
     func collectionView(_ collectionView: UICollectionView,
@@ -168,7 +170,21 @@ extension MainCollectionVC {
         guard let homeCell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionCell.identifier, for: indexPath) as? HomeCollectionCell else {
             return UICollectionViewCell()
         }
-  
+        
+        homeCell.callBackAddBookmark = {
+            print("callback", indexPath.row)
+            
+            DataPersistentManager.shared.createBookmarkJob(entityModel: BookModel(salary: "150")) { result in
+                switch result {
+                   case .success():
+                       print("DOWNLOAD SUCCESS")
+                      
+                   case .failure(let error):
+                       print(error.localizedDescription)
+                   }
+            }
+            
+        }
         
         homeCell.layer.cornerRadius = 25
         return homeCell

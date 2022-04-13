@@ -19,6 +19,11 @@
 		6369454F28028106007137C9 /* HomeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6369454E28028106007137C9 /* HomeCollectionCell.swift */; };
 		637D1A622802BFD5002AD92C /* DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637D1A612802BFD5002AD92C /* DetailsVC.swift */; };
 		637D1A652802C9F8002AD92C /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637D1A642802C9F8002AD92C /* Extension+UIView.swift */; };
+		637E57C628065287005546E8 /* GithubEntity.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 637E57C428065287005546E8 /* GithubEntity.xcdatamodeld */; };
+		637E57CC28065503005546E8 /* DataPersistentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E57CB28065503005546E8 /* DataPersistentManager.swift */; };
+		637E57CF28065634005546E8 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E57CE28065634005546E8 /* Result.swift */; };
+		637E57D128066948005546E8 /* JobSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E57D028066948005546E8 /* JobSearchModel.swift */; };
+		637E57D328067EFA005546E8 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E57D228067EFA005546E8 /* BookModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +41,11 @@
 		6369454E28028106007137C9 /* HomeCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionCell.swift; sourceTree = "<group>"; };
 		637D1A612802BFD5002AD92C /* DetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
 		637D1A642802C9F8002AD92C /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
+		637E57C528065287005546E8 /* GithubEntity.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GithubEntity.xcdatamodel; sourceTree = "<group>"; };
+		637E57CB28065503005546E8 /* DataPersistentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistentManager.swift; sourceTree = "<group>"; };
+		637E57CE28065634005546E8 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		637E57D028066948005546E8 /* JobSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobSearchModel.swift; sourceTree = "<group>"; };
+		637E57D228067EFA005546E8 /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +85,8 @@
 				6369454928027C5A007137C9 /* ViewModels */,
 				6369454828027C55007137C9 /* Model */,
 				6369454628027C2F007137C9 /* Network */,
+				637E57C428065287005546E8 /* GithubEntity.xcdatamodeld */,
+				637E57CB28065503005546E8 /* DataPersistentManager.swift */,
 			);
 			path = "GithubJobs-APP";
 			sourceTree = "<group>";
@@ -82,6 +94,7 @@
 		6369454628027C2F007137C9 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				637E57CD28065622005546E8 /* Helpers */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -97,6 +110,8 @@
 		6369454828027C55007137C9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				637E57D028066948005546E8 /* JobSearchModel.swift */,
+				637E57D228067EFA005546E8 /* BookModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -139,6 +154,14 @@
 				63256E152804283D00135936 /* Extension+UIColor.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		637E57CD28065622005546E8 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				637E57CE28065634005546E8 /* Result.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,9 +234,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				637D1A652802C9F8002AD92C /* Extension+UIView.swift in Sources */,
+				637E57D128066948005546E8 /* JobSearchModel.swift in Sources */,
+				637E57D328067EFA005546E8 /* BookModel.swift in Sources */,
+				637E57C628065287005546E8 /* GithubEntity.xcdatamodeld in Sources */,
+				637E57CC28065503005546E8 /* DataPersistentManager.swift in Sources */,
 				6369454F28028106007137C9 /* HomeCollectionCell.swift in Sources */,
 				637D1A622802BFD5002AD92C /* DetailsVC.swift in Sources */,
 				63256E142803FE7B00135936 /* DownloadedListVC.swift in Sources */,
+				637E57CF28065634005546E8 /* Result.swift in Sources */,
 				6369453A28027B80007137C9 /* GithubJobs_APP.xcdatamodeld in Sources */,
 				6369453028027B80007137C9 /* AppDelegate.swift in Sources */,
 				6369453228027B80007137C9 /* SceneDelegate.swift in Sources */,
@@ -428,6 +456,16 @@
 			);
 			currentVersion = 6369453928027B80007137C9 /* GithubJobs_APP.xcdatamodel */;
 			path = GithubJobs_APP.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		637E57C428065287005546E8 /* GithubEntity.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				637E57C528065287005546E8 /* GithubEntity.xcdatamodel */,
+			);
+			currentVersion = 637E57C528065287005546E8 /* GithubEntity.xcdatamodel */;
+			path = GithubEntity.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
