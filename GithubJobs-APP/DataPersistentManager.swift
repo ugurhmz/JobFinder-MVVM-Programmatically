@@ -35,22 +35,19 @@ class DataPersistentManager {
       }
     
     // CREATE
-    func createBookmarkJob(entityModel: BookModel,
+    func createBookmarkJob(entityModel: JobInfo,
                            completion: @escaping (Result<Void>) -> Void) {
-//
-//        let bookmarkModel = GithubEntity(context: getContext())
-//
-//        bookmarkModel.id = Int32(entityModel.id ?? 0)
-//        bookmarkModel.title = entityModel.title
-//        bookmarkModel.companyLogo = entityModel.companyLogo
-//        bookmarkModel.companyName = entityModel.companyName
-//        bookmarkModel.salary = entityModel.salary?.rawValue
-//        bookmarkModel.url = entityModel.url
-//        bookmarkModel.jobType = entityModel.jobType?.rawValue
+
+        let bookmarkModel = GithubEntity(context: getContext())
+
+        bookmarkModel.id = Int32(entityModel.id ?? 0)
+        bookmarkModel.title = entityModel.title
+        bookmarkModel.companyLogo = entityModel.companyLogo
+        bookmarkModel.companyName = entityModel.companyName
+        bookmarkModel.salary = entityModel.salary?.rawValue
+        bookmarkModel.url = entityModel.url
+        bookmarkModel.jobType = entityModel.jobType?.rawValue
         
-        let bookModel = BookEntity(context: getContext())
-        
-        bookModel.salary = entityModel.salary
         
         do {
                   try getContext().save()

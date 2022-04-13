@@ -12,7 +12,8 @@ import UIKit
 class MainCollectionVC: UICollectionViewController{
     
     private let searchController = UISearchController(searchResultsController: nil)
-    
+    var downloadVM = DownloadViewModel()
+    private var jobDataList: [JobInfo] = [JobInfo]()
     let jobTitles = ["All","iOS", "FullStack"]
     
     lazy var segmentedControl: UISegmentedControl = {
@@ -171,20 +172,21 @@ extension MainCollectionVC {
             return UICollectionViewCell()
         }
         
-        homeCell.callBackAddBookmark = {
-            print("callback", indexPath.row)
-            
-            DataPersistentManager.shared.createBookmarkJob(entityModel: BookModel(salary: "150")) { result in
-                switch result {
-                   case .success():
-                       print("DOWNLOAD SUCCESS")
-                      
-                   case .failure(let error):
-                       print(error.localizedDescription)
-                   }
-            }
-            
-        }
+        self.downloadVM.createBookMarkWithIndexPath(bookmarkItem: jobDataList[indexPath.row])
+//        homeCell.callBackAddBookmark = {
+//            print("callback", indexPath.row)
+//
+//            DataPersistentManager.shared.createBookmarkJob(entityModel: BookModel(salary: "150")) { result in
+//                switch result {
+//                   case .success():
+//                       print("DOWNLOAD SUCCESS")
+//
+//                   case .failure(let error):
+//                       print(error.localizedDescription)
+//                   }
+//            }
+//
+//        }
         
         homeCell.layer.cornerRadius = 25
         return homeCell
