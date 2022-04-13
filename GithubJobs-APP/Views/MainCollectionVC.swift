@@ -122,7 +122,7 @@ extension MainCollectionVC: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: view.frame.width - 20,
+        return CGSize(width: (view.frame.width / 2) - 10,
                       height: 200)
     }
     
