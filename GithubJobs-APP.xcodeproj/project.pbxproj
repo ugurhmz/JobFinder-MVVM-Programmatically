@@ -25,6 +25,10 @@
 		637E57D128066948005546E8 /* JobSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E57D028066948005546E8 /* JobSearchModel.swift */; };
 		637E57D328067EFA005546E8 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E57D228067EFA005546E8 /* BookModel.swift */; };
 		637E57D52806907A005546E8 /* DownloadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E57D42806907A005546E8 /* DownloadViewModel.swift */; };
+		637E57D72806C2E8005546E8 /* JobWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E57D62806C2E8005546E8 /* JobWebService.swift */; };
+		637E57DA2806C517005546E8 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 637E57D92806C517005546E8 /* Alamofire */; };
+		637E57DC2806CABA005546E8 /* Decoders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E57DB2806CABA005546E8 /* Decoders.swift */; };
+		637E57DE2806CC57005546E8 /* JobsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E57DD2806CC57005546E8 /* JobsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +52,9 @@
 		637E57D028066948005546E8 /* JobSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobSearchModel.swift; sourceTree = "<group>"; };
 		637E57D228067EFA005546E8 /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
 		637E57D42806907A005546E8 /* DownloadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadViewModel.swift; sourceTree = "<group>"; };
+		637E57D62806C2E8005546E8 /* JobWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobWebService.swift; sourceTree = "<group>"; };
+		637E57DB2806CABA005546E8 /* Decoders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoders.swift; sourceTree = "<group>"; };
+		637E57DD2806CC57005546E8 /* JobsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				637E57DA2806C517005546E8 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				637E57CD28065622005546E8 /* Helpers */,
+				637E57D62806C2E8005546E8 /* JobWebService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -122,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				637E57D42806907A005546E8 /* DownloadViewModel.swift */,
+				637E57DD2806CC57005546E8 /* JobsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -163,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				637E57CE28065634005546E8 /* Result.swift */,
+				637E57DB2806CABA005546E8 /* Decoders.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -183,6 +194,9 @@
 			dependencies = (
 			);
 			name = "GithubJobs-APP";
+			packageProductDependencies = (
+				637E57D92806C517005546E8 /* Alamofire */,
+			);
 			productName = "GithubJobs-APP";
 			productReference = 6369452C28027B80007137C9 /* GithubJobs-APP.app */;
 			productType = "com.apple.product-type.application";
@@ -211,6 +225,9 @@
 				Base,
 			);
 			mainGroup = 6369452328027B80007137C9;
+			packageReferences = (
+				637E57D82806C517005546E8 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 6369452D28027B80007137C9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -236,12 +253,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				637E57DE2806CC57005546E8 /* JobsViewModel.swift in Sources */,
 				637D1A652802C9F8002AD92C /* Extension+UIView.swift in Sources */,
 				637E57D128066948005546E8 /* JobSearchModel.swift in Sources */,
 				637E57D328067EFA005546E8 /* BookModel.swift in Sources */,
 				637E57C628065287005546E8 /* GithubEntity.xcdatamodeld in Sources */,
 				637E57CC28065503005546E8 /* DataPersistentManager.swift in Sources */,
 				6369454F28028106007137C9 /* HomeCollectionCell.swift in Sources */,
+				637E57D72806C2E8005546E8 /* JobWebService.swift in Sources */,
 				637D1A622802BFD5002AD92C /* DetailsVC.swift in Sources */,
 				63256E142803FE7B00135936 /* DownloadedListVC.swift in Sources */,
 				637E57CF28065634005546E8 /* Result.swift in Sources */,
@@ -251,6 +270,7 @@
 				6369453228027B80007137C9 /* SceneDelegate.swift in Sources */,
 				6369454D28027FA6007137C9 /* MainCollectionVC.swift in Sources */,
 				63256E102803FD9D00135936 /* MainTabBarVC.swift in Sources */,
+				637E57DC2806CABA005546E8 /* Decoders.swift in Sources */,
 				63256E122803FE2900135936 /* CompaniesVC.swift in Sources */,
 				63256E162804283D00135936 /* Extension+UIColor.swift in Sources */,
 			);
@@ -451,6 +471,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		637E57D82806C517005546E8 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		637E57D92806C517005546E8 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 637E57D82806C517005546E8 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		6369453828027B80007137C9 /* GithubJobs_APP.xcdatamodeld */ = {

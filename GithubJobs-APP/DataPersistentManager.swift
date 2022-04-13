@@ -39,7 +39,7 @@ class DataPersistentManager {
                            completion: @escaping (Result<Void>) -> Void) {
 
         let bookmarkModel = GithubEntity(context: getContext())
-
+        
         bookmarkModel.id = Int32(entityModel.id ?? 0)
         bookmarkModel.title = entityModel.title
         bookmarkModel.companyLogo = entityModel.companyLogo
@@ -50,6 +50,7 @@ class DataPersistentManager {
         
         
         do {
+                  print("entityModel",entityModel)
                   try getContext().save()
                   completion(.success(()))
                 

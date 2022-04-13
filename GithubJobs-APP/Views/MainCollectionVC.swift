@@ -8,6 +8,9 @@
 import UIKit
 
 
+protocol JobSearchOutputProtocol {
+    func saveSearchJobs(jobInfoList: [JobInfo])
+}
 
 class MainCollectionVC: UICollectionViewController{
     
@@ -15,6 +18,7 @@ class MainCollectionVC: UICollectionViewController{
     var downloadVM = DownloadViewModel()
     private var jobDataList: [JobInfo] = [JobInfo]()
     let jobTitles = ["All","iOS", "FullStack"]
+    var jobViewModel = JobsViewModel()
     
     lazy var segmentedControl: UISegmentedControl = {
         let control = UISegmentedControl(items: jobTitles)
@@ -49,6 +53,8 @@ class MainCollectionVC: UICollectionViewController{
         super.viewDidLoad()
         setupViews()
         searchBarConfigure()
+        jobViewModel.setSearchDelegate(output: self)
+        jobViewModel.getSearchingJobs(with: "swift")
     }
     
     private func setupViews() {
@@ -116,6 +122,21 @@ class MainCollectionVC: UICollectionViewController{
 }
 
 
+
+//MARK: -
+
+extension MainCollectionVC: JobSearchOutputProtocol {
+    
+    func saveSearchJobs(jobInfoList: [JobInfo]) {
+        print("result", jobInfoList)
+        self.jobDataList = jobInfoList
+        self.collectionView.reloadData()
+    }
+    
+    
+}
+
+
 //MARK: - DelegateFlowLayout
 extension MainCollectionVC: UICollectionViewDelegateFlowLayout {
     
@@ -159,7 +180,7 @@ extension MainCollectionVC {
     // numberOfItemsInSection
     override func collectionView(_ collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
-       return 7
+        return jobDataList.count
     }
 
    
@@ -172,21 +193,14 @@ extension MainCollectionVC {
             return UICollectionViewCell()
         }
         
-        self.downloadVM.createBookMarkWithIndexPath(bookmarkItem: jobDataList[indexPath.row])
-//        homeCell.callBackAddBookmark = {
-//            print("callback", indexPath.row)
-//
-//            DataPersistentManager.shared.createBookmarkJob(entityModel: BookModel(salary: "150")) { result in
-//                switch result {
-//                   case .success():
-//                       print("DOWNLOAD SUCCESS")
-//
-//                   case .failure(let error):
-//                       print(error.localizedDescription)
-//                   }
-//            }
-//
-//        }
+        
+        // Cell içindeki bookmarkBtn tıklanınca, burası tetikleniyor.
+        homeCell.callBackAddBookmark = {
+            print("callback", indexPath.row)
+            self.downloadVM.createBookMarkWithIndexPath(bookmarkItem: self.jobDataList[indexPath.row])
+
+        }
+        
         
         homeCell.layer.cornerRadius = 25
         return homeCell

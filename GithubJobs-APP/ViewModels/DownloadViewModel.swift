@@ -17,10 +17,11 @@ class DownloadViewModel {
     // CREATE
     func createBookMarkWithIndexPath(bookmarkItem: JobInfo ){
         DataPersistentManager.shared.createBookmarkJob(entityModel: bookmarkItem) { result in
-            
+            print("bookmarkItem",bookmarkItem)
             switch result {
             case .success():
-                print("Download Success")
+                print("Download Success",result)
+                
             case .failure(let error):
                 print(error.localizedDescription)
             }

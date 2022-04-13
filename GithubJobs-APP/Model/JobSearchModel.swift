@@ -6,7 +6,7 @@
 import Foundation
 
 // MARK: - Welcome
-struct Welcome: Codable {
+struct JobsData: Codable {
     let jobCount: Int?
     let jobs: [JobInfo]?
 
