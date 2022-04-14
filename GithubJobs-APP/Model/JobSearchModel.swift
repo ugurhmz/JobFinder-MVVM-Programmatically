@@ -24,9 +24,9 @@ struct JobInfo: Codable {
     let companyLogo: String?
     let category: String?
     let tags: [String]?
-    let jobType: JobType?
+   // let jobType: JobType?
     let publicationDate, candidateRequiredLocation: String?
-    let salary: Salary?
+    //let salary: Salary?
     let jobDescription: String?
     let companyLogoURL: String?
 
@@ -35,10 +35,10 @@ struct JobInfo: Codable {
         case companyName     = "company_name"
         case companyLogo     = "company_logo"
         case category, tags
-        case jobType    = "job_type"
+       // case jobType    = "job_type"
         case publicationDate = "publication_date"
         case candidateRequiredLocation = "candidate_required_location"
-        case salary
+       // case salary
         case jobDescription = "description"
         case companyLogoURL = "company_logo_url"
     }
@@ -46,13 +46,18 @@ struct JobInfo: Codable {
 
 
 
-enum JobType: String, Codable {
-    case fullTime = "full_time"
-    case partTime = "part_time"
-}
+//struct JobType: Codable {
+//let fullTime: String?
+//let partTime: String?
+//
+//    enum CodingKeys: String, CodingKey {
+//        case fullTime = "full_time"
+//        case partTime = "part_time"
+//    }
+//}
 
-enum Salary: String, Codable {
-    case empty = ""
-    case the140K170K = "$140k - $170k"
-    case the35K55K = "£35k - £55k"
-}
+//struct Salary: String, Codable {
+//    case empty = ""
+//    case the140K170K = "$140k - $170k"
+//    case the35K55K = "£35k - £55k"
+//}

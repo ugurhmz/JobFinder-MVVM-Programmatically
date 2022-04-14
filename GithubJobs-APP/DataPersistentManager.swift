@@ -44,9 +44,9 @@ class DataPersistentManager {
         bookmarkModel.title = entityModel.title
         bookmarkModel.companyLogo = entityModel.companyLogo
         bookmarkModel.companyName = entityModel.companyName
-        bookmarkModel.salary = entityModel.salary?.rawValue
+       // bookmarkModel.salary = entityModel.salary?.rawValue
         bookmarkModel.url = entityModel.url
-        bookmarkModel.jobType = entityModel.jobType?.rawValue
+       // bookmarkModel.jobType = entityModel.jobType?.rawValue
         
         
         do {

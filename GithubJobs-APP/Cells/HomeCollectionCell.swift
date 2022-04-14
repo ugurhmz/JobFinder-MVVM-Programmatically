@@ -114,17 +114,17 @@ extension HomeCollectionCell {
         self.companyNameLabel.text = myJobModel.companyName
         guard let url = URL(string: myJobModel.companyLogo ?? "") else { return }
         
-        let workType = myJobModel.jobType?.rawValue
+       // let workType = myJobModel.jobType?.rawValue
         
-        if ((workType?.contains("full_time")) != nil) {
-            self.workTimeLabel.text = "Full Time"
-        } else if ((workType?.contains("full_time")) != nil) {
-            self.workTimeLabel.text = "Part Time"
-        } else {
-            self.workTimeLabel.text = workType
-        }
-        
-      
+//        if ((workType?.contains("full_time")) != nil) {
+//            self.workTimeLabel.text = "Full Time"
+//        } else if ((workType?.contains("full_time")) != nil) {
+//            self.workTimeLabel.text = "Part Time"
+//        } else {
+//            self.workTimeLabel.text = workType
+//        }
+//
+//
         
         self.imgCompany.kf.setImage(with: url)
         self.locationLabel.text = myJobModel.candidateRequiredLocation

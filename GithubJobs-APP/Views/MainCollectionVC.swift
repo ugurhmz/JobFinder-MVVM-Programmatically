@@ -15,8 +15,12 @@ protocol JobSearchOutputProtocol {
 class MainCollectionVC: UICollectionViewController{
     
     private let searchController = UISearchController(searchResultsController: nil)
+    
     var downloadVM = DownloadViewModel()
     private var jobDataList: [JobInfo] = [JobInfo]()
+    private var searchJobDataList: [JobInfo] = [JobInfo]()
+    private var searchMode = false
+    
     let jobTitles = ["All","iOS", "FullStack"]
     var jobViewModel = JobsViewModel()
     
@@ -55,6 +59,7 @@ class MainCollectionVC: UICollectionViewController{
         searchBarConfigure()
         jobViewModel.setSearchDelegate(output: self)
         jobViewModel.getSearchingJobs(with: "swift")
+        
     }
     
     private func setupViews() {
@@ -109,8 +114,7 @@ class MainCollectionVC: UICollectionViewController{
          
     }
     
-   
-    
+
     
     init(){
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
@@ -122,18 +126,56 @@ class MainCollectionVC: UICollectionViewController{
 }
 
 
-
 //MARK: -
 
 extension MainCollectionVC: JobSearchOutputProtocol {
     
     func saveSearchJobs(jobInfoList: [JobInfo]) {
-        print("result", jobInfoList.count)
-        self.jobDataList = jobInfoList
-        self.collectionView.reloadData()
+        DispatchQueue.main.async {
+            print("result", jobInfoList.count)
+            self.jobDataList = jobInfoList
+            self.collectionView.reloadData()
+        }
+    }
+}
+
+
+
+//MARK: - UISearchBarDelegate
+extension MainCollectionVC: UISearchBarDelegate {
+    
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+
+        
+
+        
+        guard var query = searchBar.text?.lowercased(),
+                             !query.trimmingCharacters(in: .whitespaces).isEmpty,
+                             query.trimmingCharacters(in: .whitespaces).count > 0
+                else { return}
+
+        if query.contains(" ") {
+            query =  searchBar.text?.replacingOccurrences(of: " ", with: "%20") ?? ""
+        }
+        if query.contains("ı") {
+            query =  searchBar.text?.replacingOccurrences(of: "ı", with: "i") ?? ""
+        }
+     
+        print("query",query.first)
+        self.jobViewModel.getSearchingJobs(with: query)
+         
     }
     
+  
     
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        DispatchQueue.main.async {
+            self.jobViewModel.getSearchingJobs(with: "swift")
+            self.collectionView.reloadData()
+        }
+    }
 }
 
 
@@ -147,16 +189,6 @@ extension MainCollectionVC: UICollectionViewDelegateFlowLayout {
         return CGSize(width: (view.frame.width / 2) - 10,
                       height: 200)
     }
-    
-
-   
-   
-}
-
-
-//MARK: - SearchBarDelegate
-extension MainCollectionVC: UISearchBarDelegate  {
-    
 }
 
 
@@ -180,7 +212,7 @@ extension MainCollectionVC {
     // numberOfItemsInSection
     override func collectionView(_ collectionView: UICollectionView,
                                  numberOfItemsInSection section: Int) -> Int {
-        return jobDataList.count
+        return   jobDataList.count
     }
 
    
@@ -192,17 +224,14 @@ extension MainCollectionVC {
         guard let homeCell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionCell.identifier, for: indexPath) as? HomeCollectionCell else {
             return UICollectionViewCell()
         }
-        
+
         homeCell.configure(with: jobDataList[indexPath.row])
-        
         
         // Cell içindeki bookmarkBtn tıklanınca, burası tetikleniyor.
         homeCell.callBackAddBookmark = {
             print("callback", indexPath.row)
             self.downloadVM.createBookMarkWithIndexPath(bookmarkItem: self.jobDataList[indexPath.row])
-
         }
-        
         
         homeCell.layer.cornerRadius = 25
         return homeCell
@@ -212,7 +241,5 @@ extension MainCollectionVC {
         let detailsVC = DetailsVC()
         navigationController?.pushViewController(detailsVC, animated: true)
     }
-    
-  
-    
+     
 }

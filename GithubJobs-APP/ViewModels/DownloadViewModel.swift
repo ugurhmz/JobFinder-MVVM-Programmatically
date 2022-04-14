@@ -11,9 +11,6 @@ import Foundation
 class DownloadViewModel {
     
     
-    // GET Search Datas
-    
-    
     // CREATE
     func createBookMarkWithIndexPath(bookmarkItem: JobInfo ){
         DataPersistentManager.shared.createBookmarkJob(entityModel: bookmarkItem) { result in
