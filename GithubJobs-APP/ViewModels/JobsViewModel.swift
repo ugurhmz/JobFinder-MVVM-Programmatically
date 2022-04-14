@@ -42,8 +42,4 @@ final class JobsViewModel: JobsViewModelProtocol {
     }
     
     
-    
-   
-    
-    
 }

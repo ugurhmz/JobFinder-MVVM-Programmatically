@@ -21,7 +21,7 @@ class MainCollectionVC: UICollectionViewController{
     private var searchJobDataList: [JobInfo] = [JobInfo]()
     private var searchMode = false
     
-    let jobTitles = ["All","iOS", "FullStack"]
+    let jobTitles = ["All 13","iOS", "FullStack", "Swift"]
     var jobViewModel = JobsViewModel()
     
     lazy var segmentedControl: UISegmentedControl = {
@@ -32,22 +32,28 @@ class MainCollectionVC: UICollectionViewController{
         control.layer.cornerRadius = 10
         control.layer.masksToBounds = true
         control.addTarget(self, action: #selector(handleSegmentedControlValueChanged(_:)), for: .valueChanged)
+      
         
-       
         return control
     }()
     
     
-    
+    // Segmented Handle
     @objc func handleSegmentedControlValueChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
             print("all")
             
+            self.jobViewModel.getSearchingJobs(with: "software%20development")
+          
         case 1:
-            print("ios")
+            self.jobViewModel.getSearchingJobs(with: "ios%20developer")
         case 2:
+            self.jobViewModel.getSearchingJobs(with: "full%20stack")
             print("full")
+        case 3:
+            self.jobViewModel.getSearchingJobs(with: "swift")
+            print("Swift")
         default:
             break
         }
@@ -58,18 +64,54 @@ class MainCollectionVC: UICollectionViewController{
         setupViews()
         searchBarConfigure()
         jobViewModel.setSearchDelegate(output: self)
-        jobViewModel.getSearchingJobs(with: "swift")
+        jobViewModel.getSearchingJobs(with: "software%20development")
         
     }
     
     private func setupViews() {
         view.addSubview(segmentedControl)
+      
         segmentedControlConfigure()
 
         collectionView.backgroundColor = .lightGray
         collectionView.register(HomeCollectionCell.self,
                                 forCellWithReuseIdentifier: HomeCollectionCell.identifier)
     }
+    func addCounter(count: Int)->UIView {
+        // Count > 0, show count
+        if count > 0 {
+
+            // Create label
+            let fontSize: CGFloat = 10
+            let label = UILabel()
+            label.font = UIFont.systemFont(ofSize: fontSize)
+            label.textAlignment = .center
+            label.textColor = .white
+            label.backgroundColor = .red
+
+            // Add count to label and size to fit
+            label.text = "\(NSNumber(value: count))"
+            label.sizeToFit()
+
+            // Adjust frame to be square for single digits or elliptical for numbers > 9
+            var frame: CGRect = label.frame
+            frame.size.height += CGFloat(Int(0.4 * fontSize))
+            frame.size.width =  frame.size.width + CGFloat(Int(fontSize) +   15)
+            label.frame =  CGRect(x: 15, y: -10, width: 30, height: 30)
+
+            // Set radius and clip to bounds
+            label.layer.cornerRadius = frame.size.height / 2.0
+            label.clipsToBounds = true
+
+            // Show label in accessory view and remove disclosure
+            return label
+
+        } else {
+            return UIView()
+        }
+    }
+    
+   
     
     private func segmentedControlConfigure(){
         segmentedControl.anchor(top: view.safeAreaLayoutGuide.topAnchor,
@@ -134,6 +176,9 @@ extension MainCollectionVC: JobSearchOutputProtocol {
         DispatchQueue.main.async {
             print("result", jobInfoList.count)
             self.jobDataList = jobInfoList
+           
+            self.navigationController?.navigationBar.addSubview(self.addCounter(count: jobInfoList.count))
+            
             self.collectionView.reloadData()
         }
     }
