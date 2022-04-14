@@ -272,6 +272,8 @@ extension MainCollectionVC {
 
         homeCell.configure(with: jobDataList[indexPath.row])
         
+        
+        
         // Cell içindeki bookmarkBtn tıklanınca, burası tetikleniyor.
         homeCell.callBackAddBookmark = {
             print("callback", indexPath.row)
@@ -284,6 +286,8 @@ extension MainCollectionVC {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailsVC = DetailsVC()
+        print("myrow",self.jobDataList[indexPath.row])
+        detailsVC.configure(with: self.jobDataList[indexPath.row])
         navigationController?.pushViewController(detailsVC, animated: true)
     }
      
