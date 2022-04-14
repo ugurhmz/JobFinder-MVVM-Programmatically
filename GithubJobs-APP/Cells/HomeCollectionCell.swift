@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class HomeCollectionCell: UICollectionViewCell {
     
@@ -23,9 +24,9 @@ class HomeCollectionCell: UICollectionViewCell {
     private let companyNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Huawei"
-        label.font = .systemFont(ofSize: 22)
+        label.font = .systemFont(ofSize: 21)
         label.numberOfLines = 0
-        label.font = .boldSystemFont(ofSize: 18)
+        label.font = .boldSystemFont(ofSize: 17)
         label.textColor = .black
         
         return label
@@ -36,7 +37,7 @@ class HomeCollectionCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "iOS Developer"
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 17)
+        label.font = .systemFont(ofSize: 15)
         label.textColor = .black
         
         return label
@@ -46,7 +47,7 @@ class HomeCollectionCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "Full Time"
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 17)
+        label.font = .systemFont(ofSize: 15)
         label.textColor = .black
         
         return label
@@ -55,7 +56,7 @@ class HomeCollectionCell: UICollectionViewCell {
     private let locationLabel: UILabel = {
         let label = UILabel()
         label.text = "Boston, MA"
-        label.font = .systemFont(ofSize: 17)
+        label.font = .systemFont(ofSize: 15)
         label.numberOfLines = 0
         label.textColor = .black
       
@@ -104,6 +105,35 @@ class HomeCollectionCell: UICollectionViewCell {
     }
     
 }
+
+
+//MARK: - Fill in Cell with data
+extension HomeCollectionCell {
+    func configure(with myJobModel: JobInfo){
+        
+        self.companyNameLabel.text = myJobModel.companyName
+        guard let url = URL(string: myJobModel.companyLogo ?? "") else { return }
+        
+        let workType = myJobModel.jobType?.rawValue
+        
+        if ((workType?.contains("full_time")) != nil) {
+            self.workTimeLabel.text = "Full Time"
+        } else if ((workType?.contains("full_time")) != nil) {
+            self.workTimeLabel.text = "Part Time"
+        } else {
+            self.workTimeLabel.text = workType
+        }
+        
+      
+        
+        self.imgCompany.kf.setImage(with: url)
+        self.locationLabel.text = myJobModel.candidateRequiredLocation
+        self.positionLabel.text = myJobModel.title
+        //self.workTimeLabel.text = myJobModel.jobType?.rawValue
+        
+    }
+}
+
 
 //MARK: - Constraints
 extension HomeCollectionCell {

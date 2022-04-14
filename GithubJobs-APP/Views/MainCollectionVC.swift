@@ -128,7 +128,7 @@ class MainCollectionVC: UICollectionViewController{
 extension MainCollectionVC: JobSearchOutputProtocol {
     
     func saveSearchJobs(jobInfoList: [JobInfo]) {
-        print("result", jobInfoList)
+        print("result", jobInfoList.count)
         self.jobDataList = jobInfoList
         self.collectionView.reloadData()
     }
@@ -192,6 +192,8 @@ extension MainCollectionVC {
         guard let homeCell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionCell.identifier, for: indexPath) as? HomeCollectionCell else {
             return UICollectionViewCell()
         }
+        
+        homeCell.configure(with: jobDataList[indexPath.row])
         
         
         // Cell içindeki bookmarkBtn tıklanınca, burası tetikleniyor.

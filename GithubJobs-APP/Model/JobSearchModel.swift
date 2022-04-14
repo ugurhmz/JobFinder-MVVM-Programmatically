@@ -40,9 +40,11 @@ struct JobInfo: Codable {
         case candidateRequiredLocation = "candidate_required_location"
         case salary
         case jobDescription = "description"
-        case companyLogoURL = "ompany_logo_url"
+        case companyLogoURL = "company_logo_url"
     }
 }
+
+
 
 enum JobType: String, Codable {
     case fullTime = "full_time"
