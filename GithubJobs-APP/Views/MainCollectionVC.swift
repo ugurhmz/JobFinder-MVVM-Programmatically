@@ -21,7 +21,7 @@ class MainCollectionVC: UICollectionViewController{
     private var searchJobDataList: [JobInfo] = [JobInfo]()
     private var searchMode = false
     
-    let jobTitles = ["All 13","iOS", "FullStack", "Swift"]
+    let jobTitles = ["All","iOS", "FullStack", "Swift"]
     var jobViewModel = JobsViewModel()
     
     lazy var segmentedControl: UISegmentedControl = {
@@ -65,8 +65,11 @@ class MainCollectionVC: UICollectionViewController{
         searchBarConfigure()
         jobViewModel.setSearchDelegate(output: self)
         jobViewModel.getSearchingJobs(with: "software%20development")
+        navigationController?.additionalSafeAreaInsets.top = 0
         
     }
+  
+    
     
     private func setupViews() {
         view.addSubview(segmentedControl)
@@ -76,7 +79,15 @@ class MainCollectionVC: UICollectionViewController{
         collectionView.backgroundColor = .lightGray
         collectionView.register(HomeCollectionCell.self,
                                 forCellWithReuseIdentifier: HomeCollectionCell.identifier)
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        
     }
+    
+    
+  
+    
     func addCounter(count: Int)->UIView {
         // Count > 0, show count
         if count > 0 {
@@ -86,8 +97,9 @@ class MainCollectionVC: UICollectionViewController{
             let label = UILabel()
             label.font = UIFont.systemFont(ofSize: fontSize)
             label.textAlignment = .center
-            label.textColor = .white
-            label.backgroundColor = .red
+            label.textColor = .black
+            label.backgroundColor = .white
+            
 
             // Add count to label and size to fit
             label.text = "\(NSNumber(value: count))"
@@ -151,7 +163,7 @@ class MainCollectionVC: UICollectionViewController{
 
             navigationController?.navigationBar.prefersLargeTitles = false
             navigationItem.title = "Job Finder®"
-
+            
             }
          
     }
@@ -292,3 +304,4 @@ extension MainCollectionVC {
     }
      
 }
+

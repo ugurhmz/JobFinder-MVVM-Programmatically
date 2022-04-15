@@ -78,7 +78,7 @@ class DetailsVC: UIViewController {
     
     private let applyButton: UIButton = {
         let btn = UIButton()
-        btn.setTitle("Apply", for: .normal)
+        btn.setTitle("Save Post", for: .normal)
         btn.tintColor = .white
         btn.backgroundColor = UIColor.myRGB(red: 84, green: 99 , blue: 255)
         btn.layer.cornerRadius = 15
@@ -193,7 +193,7 @@ class DetailsVC: UIViewController {
 }
 
 
-//MARK: -
+//MARK: - Fill Data
 extension DetailsVC {
     
     public func configure(with model: JobInfo ) {
@@ -207,16 +207,3 @@ extension DetailsVC {
     }
 }
 
-extension String {
-    var htmlToAttributedString: NSAttributedString? {
-        guard let data = data(using: .utf8) else { return nil }
-        do {
-            return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue], documentAttributes: nil)
-        } catch {
-            return nil
-        }
-    }
-    var htmlToString: String {
-        return htmlToAttributedString?.string ?? ""
-    }
-}
