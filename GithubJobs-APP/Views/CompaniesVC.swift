@@ -210,6 +210,7 @@ extension CompaniesVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let tableCell = tableView.dequeueReusableCell(withIdentifier: CompaniesTableViewCell.identifier, for: indexPath) as! CompaniesTableViewCell
        
+        tableCell.cellDelegateForNavigate = self
         
         switch indexPath.section {
             
@@ -289,4 +290,17 @@ extension CompaniesVC: UISearchBarDelegate {
         self.searchingFunc(shouldShow: false)
         
     }
+}
+
+
+
+//MARK: -  Navigate
+extension CompaniesVC: TableCellProcotol {
+    func tableCollectionViewCellDidTapCell(navigateJobInfo: JobInfo) {
+       let detailsVC = DetailsVC()
+        detailsVC.configure(with: navigateJobInfo)
+        navigationController?.pushViewController(detailsVC, animated: true)
+    }
+    
+    
 }

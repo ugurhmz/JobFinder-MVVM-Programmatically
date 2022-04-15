@@ -72,6 +72,7 @@ class MainCollectionVC: UICollectionViewController{
         } else {
            segmentedControl.tintColor = UIColor.blue
         }
+        
     }
   
     
@@ -88,7 +89,7 @@ class MainCollectionVC: UICollectionViewController{
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
      
-        
+     
     }
     
     

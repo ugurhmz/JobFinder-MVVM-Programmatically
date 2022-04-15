@@ -7,10 +7,16 @@
 
 import UIKit
 
+
+protocol TableCellProcotol: AnyObject {
+    func tableCollectionViewCellDidTapCell(navigateJobInfo: JobInfo)
+}
+
 class CompaniesTableViewCell: UITableViewCell {
 
     static var identifier = "CompaniesTableViewCell"
     private var swiftList: [JobInfo] = [JobInfo]()
+    weak var cellDelegateForNavigate: TableCellProcotol?
     
     private  let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -78,6 +84,12 @@ extension CompaniesTableViewCell: UICollectionViewDelegate, UICollectionViewData
         return flowCell
     }
   
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+       // print("handle",swiftList[indexPath.row])
+        
+        self.cellDelegateForNavigate?.tableCollectionViewCellDidTapCell(navigateJobInfo: swiftList[indexPath.row])
+    }
     
     
     

@@ -57,7 +57,7 @@ class DetailsVC: UIViewController {
     
     private let companyWebSiteButton: UIButton = {
         let btn = UIButton()
-        btn.setTitle("Company Website", for: .normal)
+        btn.setTitle("Visit Website", for: .normal)
         btn.tintColor = .white
         btn.backgroundColor =  UIColor.myRGB(red: 84, green: 99 , blue: 255)
         btn.layer.cornerRadius = 15

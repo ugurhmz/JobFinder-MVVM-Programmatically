@@ -59,6 +59,13 @@ class HorizontalLayoutCell: UICollectionViewCell {
         layer.borderWidth = 2
         layer.borderColor = UIColor.lightGray.cgColor
         layer.cornerRadius = 10
+    
+        
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowPath = UIBezierPath(rect:  layer.bounds).cgPath
+                layer.shadowRadius = 2
+                layer.shadowOffset = .zero
+        layer.shadowOpacity = 0.8
         
        setConstraints()
     }

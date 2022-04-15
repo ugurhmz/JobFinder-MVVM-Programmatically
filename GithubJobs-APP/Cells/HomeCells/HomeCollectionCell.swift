@@ -98,6 +98,15 @@ class HomeCollectionCell: UICollectionViewCell {
         addSubview(bookmarkIconBtn)
         backgroundColor = .white
         
+        
+        
+           
+           layer.shadowColor = UIColor.black.cgColor
+           layer.shadowPath = UIBezierPath(rect: layer.bounds).cgPath
+           layer.shadowRadius = 10
+           layer.shadowOffset = .zero
+           layer.shadowOpacity = 1
+        
     }
     
     required init?(coder: NSCoder) {
