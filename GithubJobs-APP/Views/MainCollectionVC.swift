@@ -42,18 +42,14 @@ class MainCollectionVC: UICollectionViewController{
     @objc func handleSegmentedControlValueChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            print("all")
-            
+           
             self.jobViewModel.getSearchingJobs(with: "software%20development")
-          
         case 1:
             self.jobViewModel.getSearchingJobs(with: "ios%20developer")
         case 2:
             self.jobViewModel.getSearchingJobs(with: "full%20stack")
-            print("full")
         case 3:
             self.jobViewModel.getSearchingJobs(with: "swift")
-            print("Swift")
         default:
             break
         }
@@ -67,6 +63,13 @@ class MainCollectionVC: UICollectionViewController{
         jobViewModel.getSearchingJobs(with: "software%20development")
         navigationController?.additionalSafeAreaInsets.top = 0
         
+        if #available(iOS 13.0, *) {
+           segmentedControl.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
+            segmentedControl.selectedSegmentTintColor = UIColor.systemBlue.withAlphaComponent(0.8)
+            
+        } else {
+           segmentedControl.tintColor = UIColor.blue
+        }
     }
   
     
@@ -82,6 +85,7 @@ class MainCollectionVC: UICollectionViewController{
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
+     
         
     }
     
@@ -128,11 +132,12 @@ class MainCollectionVC: UICollectionViewController{
     private func segmentedControlConfigure(){
         segmentedControl.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                                 leading: view.leadingAnchor,
-                                bottom:  collectionView.topAnchor,
+                                bottom:  nil,
                                 trailing: view.trailingAnchor,
-                                padding: .init(top: 5, left: 20, bottom: 30, right: 20),
-                                size: .init(width: 100, height: 70)
+                                padding: .init(top: 10, left: 15, bottom: 0, right: 15)
         )
+                             
+        
     }
     
     private func  searchBarConfigure() {
@@ -191,6 +196,7 @@ extension MainCollectionVC: JobSearchOutputProtocol {
            
             self.navigationController?.navigationBar.addSubview(self.addCounter(count: jobInfoList.count))
             
+            self.segmentedControl.setTitle("\(self.jobTitles[self.segmentedControl.selectedSegmentIndex])  \(self.jobDataList.count)", forSegmentAt: self.segmentedControl.selectedSegmentIndex)
             self.collectionView.reloadData()
         }
     }
@@ -219,7 +225,6 @@ extension MainCollectionVC: UISearchBarDelegate {
             query =  searchBar.text?.replacingOccurrences(of: "ı", with: "i") ?? ""
         }
      
-        print("query",query.first)
         self.jobViewModel.getSearchingJobs(with: query)
          
     }

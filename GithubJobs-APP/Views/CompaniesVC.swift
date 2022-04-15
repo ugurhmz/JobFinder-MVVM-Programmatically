@@ -154,7 +154,7 @@ extension CompaniesVC: UITableViewDelegate, UITableViewDataSource {
             case Sections.FullStack.rawValue:
                 tableCell.backgroundColor = .blue
             case Sections.BackEnd.rawValue:
-                tableCell.backgroundColor = .black
+                tableCell.backgroundColor = .red
             case Sections.DevOps.rawValue:
                 tableCell.backgroundColor = .yellow
                 
