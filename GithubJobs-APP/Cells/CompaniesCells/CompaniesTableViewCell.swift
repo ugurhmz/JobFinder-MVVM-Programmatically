@@ -56,13 +56,15 @@ extension CompaniesTableViewCell: UICollectionViewDelegate, UICollectionViewData
     }
     
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let flowCell = collectionView.dequeueReusableCell(withReuseIdentifier: HorizontalLayoutCell.identifier, for: indexPath) as! HorizontalLayoutCell
         
         flowCell.backgroundColor = UIColor(hue: drand48(),
                                            saturation: 1,
                                            brightness: 1,
                                            alpha: 1)
+        
         return flowCell
     }
   
@@ -71,7 +73,7 @@ extension CompaniesTableViewCell: UICollectionViewDelegate, UICollectionViewData
 
 extension CompaniesTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: contentView.frame.width / 3,
+        return CGSize(width: contentView.frame.width / 2.5,
                       height: contentView.frame.height)
     }
 }

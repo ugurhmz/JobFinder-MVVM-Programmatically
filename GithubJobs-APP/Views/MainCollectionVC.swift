@@ -21,7 +21,7 @@ class MainCollectionVC: UICollectionViewController{
     private var searchJobDataList: [JobInfo] = [JobInfo]()
     private var searchMode = false
     
-    let jobTitles = ["All","iOS", "FullStack", "Swift"]
+    let jobTitles = ["All","iOS", "F.Stack", "Swift","F.End"]
     var jobViewModel = JobsViewModel()
     
     lazy var segmentedControl: UISegmentedControl = {
@@ -50,6 +50,8 @@ class MainCollectionVC: UICollectionViewController{
             self.jobViewModel.getSearchingJobs(with: "full%20stack")
         case 3:
             self.jobViewModel.getSearchingJobs(with: "swift")
+        case 4:
+            self.jobViewModel.getSearchingJobs(with: "front%20end")
         default:
             break
         }
@@ -134,7 +136,7 @@ class MainCollectionVC: UICollectionViewController{
                                 leading: view.leadingAnchor,
                                 bottom:  nil,
                                 trailing: view.trailingAnchor,
-                                padding: .init(top: 10, left: 15, bottom: 0, right: 15)
+                                padding: .init(top: 10, left: 10, bottom: 0, right: 10)
         )
                              
         
