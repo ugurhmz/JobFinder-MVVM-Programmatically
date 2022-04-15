@@ -10,6 +10,13 @@ import UIKit
 
 protocol CompaniesOutPutProtocol {
     func saveSwiftJobsList(jobValues: [JobInfo])
+    func saveiOsJobsList(jobValues: [JobInfo])
+    func saveFrontList(jobValues: [JobInfo])
+    func saveBackendList(jobValues: [JobInfo])
+    func saveDevopsList(jobValues: [JobInfo])
+    func saveMarketingManagerList(jobValues: [JobInfo])
+    func savefullStackList(jobValues: [JobInfo])
+    
 }
 
 
@@ -30,6 +37,12 @@ class CompaniesVC: UIViewController {
     let jobTitles: [String] = ["Swift","iOS", "Front End", "Full Stack", "Back End", "DevOps", "Marketing Manager"]
     
     private lazy var swiftJobsList: [JobInfo] = []
+    private lazy var frontList: [JobInfo] = []
+    private lazy var backendList: [JobInfo] = []
+    private lazy var devopsList: [JobInfo] = []
+    private lazy var marketingList: [JobInfo] = []
+    private lazy var fullStackList: [JobInfo] = []
+    private lazy var iosList: [JobInfo] = []
     
     
     private let tableView: UITableView = {
@@ -85,7 +98,13 @@ class CompaniesVC: UIViewController {
 //        jobViewModel.setSearchDelegate(output: self)
 //        jobViewModel.getSearchingJobs(with: "software%20development")
         viewModel.setCompanyDelagte(output: self)
-        self.viewModel.getSearchingJobs(with: "swift")
+        viewModel.getSearchingJobs(with: "swift")
+        viewModel.getSearchingJobs(with: "ios%20developer")
+        viewModel.getSearchingJobs(with: "front%20end")
+        viewModel.getSearchingJobs(with: "back%20end")
+        viewModel.getSearchingJobs(with: "full%20stack")
+        viewModel.getSearchingJobs(with: "devops")
+        viewModel.getSearchingJobs(with: "marketing%20manager")
     }
     
     private func setupViews(){
@@ -124,13 +143,40 @@ class CompaniesVC: UIViewController {
 
 //MARK: - Fill in Data
 extension CompaniesVC: CompaniesOutPutProtocol {
+    func saveiOsJobsList(jobValues: [JobInfo]) {
+        self.iosList = jobValues
+        self.tableView.reloadData()
+    }
+    
     func saveSwiftJobsList(jobValues: [JobInfo]) {
-        print("jobValues",jobValues)
         self.swiftJobsList = jobValues
         self.tableView.reloadData()
     }
     
+    func saveFrontList(jobValues: [JobInfo]) {
+        self.frontList = jobValues
+        self.tableView.reloadData()
+    }
     
+    func saveBackendList(jobValues: [JobInfo]) {
+        self.backendList = jobValues
+        self.tableView.reloadData()
+    }
+    
+    func saveDevopsList(jobValues: [JobInfo]) {
+        self.devopsList = jobValues
+        self.tableView.reloadData()
+    }
+    func saveMarketingManagerList(jobValues: [JobInfo]) {
+        self.marketingList = jobValues
+        self.tableView.reloadData()
+    }
+    
+    func savefullStackList(jobValues: [JobInfo]) {
+        self.fullStackList = jobValues
+        self.tableView.reloadData()
+    }
+ 
 }
 
 
@@ -169,22 +215,25 @@ extension CompaniesVC: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
             
             case Sections.Swift.rawValue:
-                //tableCell.configure(with: swiftJobsList)
-            tableCell.configure(with: swiftJobsList)
-            tableCell.backgroundColor = .cyan
+                tableCell.configure(with: swiftJobsList)
+            
             case Sections.iOS.rawValue:
-                tableCell.backgroundColor = .orange
+                tableCell.configure(with: iosList)
+            
             case Sections.FrontEnd.rawValue:
-                tableCell.backgroundColor = .cyan
+                tableCell.configure(with:  frontList)
+            
             case Sections.FullStack.rawValue:
-                tableCell.backgroundColor = .blue
+                tableCell.configure(with:  fullStackList)
+            
             case Sections.BackEnd.rawValue:
-                tableCell.backgroundColor = .red
+                tableCell.configure(with:  backendList)
+            
             case Sections.DevOps.rawValue:
-                tableCell.backgroundColor = .yellow
+                tableCell.configure(with:  devopsList)
                 
             case Sections.MarketingManager.rawValue:
-                tableCell.backgroundColor = .green
+                tableCell.configure(with:  marketingList)
                 
             default:
                 return UITableViewCell()
@@ -195,12 +244,21 @@ extension CompaniesVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return 230
     }
     
     
     // Header Title
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+//        switch section {
+//
+//            case Sections.Swift.rawValue:
+//            return "\(Sections.Swift.rawValue) -> \(swiftJobsList.count)"
+//
+//            default:
+//                return "UITableViewCell()"
+//        }
         return jobTitles[section]
     }
     

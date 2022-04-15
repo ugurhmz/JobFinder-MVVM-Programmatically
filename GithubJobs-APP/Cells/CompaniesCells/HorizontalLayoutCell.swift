@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class HorizontalLayoutCell: UICollectionViewCell {
     
@@ -15,8 +16,7 @@ class HorizontalLayoutCell: UICollectionViewCell {
     private let imgCompany: UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(systemName: "house")
-        iv.contentMode = .scaleAspectFill
-       
+        iv.contentMode = .scaleToFill
         return iv
     }()
     
@@ -32,7 +32,7 @@ class HorizontalLayoutCell: UICollectionViewCell {
     }()
     
     
-    private let workTimeLabel: UILabel = {
+    private let jobTitle: UILabel = {
         let label = UILabel()
         label.text = "Full Time"
         label.numberOfLines = 0
@@ -70,7 +70,25 @@ class HorizontalLayoutCell: UICollectionViewCell {
 extension HorizontalLayoutCell {
     func configure(with jobModel: JobInfo) {
         print("configure", jobModel)
-        self.companyNameLabel.text = jobModel.title
+       
+        guard let url = URL(string: jobModel.companyLogo ?? "") else { return }
+        
+       // let workType = myJobModel.jobType?.rawValue
+        
+//        if ((workType?.contains("full_time")) != nil) {
+//            self.workTimeLabel.text = "Full Time"
+//        } else if ((workType?.contains("full_time")) != nil) {
+//            self.workTimeLabel.text = "Part Time"
+//        } else {
+//            self.workTimeLabel.text = workType
+//        }
+//
+//
+        
+        self.imgCompany.kf.setImage(with: url)
+        self.companyNameLabel.text = jobModel.companyName
+        self.jobTitle.text  = jobModel.title
+        self.locationLabel.text = jobModel.candidateRequiredLocation
     }
 }
 
@@ -80,13 +98,13 @@ extension HorizontalLayoutCell {
     private func setConstraints(){
 
         
-        let stackView = UIStackView(arrangedSubviews: [companyNameLabel,locationLabel, workTimeLabel])
+        let stackView = UIStackView(arrangedSubviews: [companyNameLabel,locationLabel, jobTitle])
             addSubview(stackView)
         stackView.anchor(top: imgCompany.bottomAnchor,
                              leading: leadingAnchor,
                              bottom: bottomAnchor,
                          trailing: imgCompany.trailingAnchor,
-                             padding: .init(top: 10, left: 0, bottom: 2, right:0))
+                             padding: .init(top: 10, left: 0, bottom: 8, right:0))
         
       
             stackView.axis = .vertical
@@ -98,7 +116,9 @@ extension HorizontalLayoutCell {
                           leading: leadingAnchor,
                           bottom: stackView.topAnchor,
                           trailing: trailingAnchor,
-                          padding: .init(top: 8, left: 0, bottom: 0, right: 0))
+                          padding: .init(top: 0, left: 0, bottom: 0, right: 0),
+                          size: CGSize(width: 50, height: 68)
+        )
     }
 }
 
