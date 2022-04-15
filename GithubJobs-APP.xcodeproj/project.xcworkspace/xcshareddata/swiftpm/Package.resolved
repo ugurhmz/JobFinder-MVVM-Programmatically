@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "CHTCollectionViewWaterfallLayout",
+        "repositoryURL": "https://github.com/chiahsien/CHTCollectionViewWaterfallLayout.git",
+        "state": {
+          "branch": null,
+          "revision": "1fe42247efc8aea1ad03332d2b44f2d7fb1644bc",
+          "version": "0.9.10"
+        }
+      },
+      {
         "package": "Kingfisher",
         "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
         "state": {

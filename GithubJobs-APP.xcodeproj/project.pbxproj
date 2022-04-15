@@ -33,6 +33,9 @@
 		637E57DC2806CABA005546E8 /* Decoders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E57DB2806CABA005546E8 /* Decoders.swift */; };
 		637E57DE2806CC57005546E8 /* JobsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E57DD2806CC57005546E8 /* JobsViewModel.swift */; };
 		639B578128094D9500F52F78 /* HorizontalLayoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639B578028094D9500F52F78 /* HorizontalLayoutCell.swift */; };
+		639B57862809D51100F52F78 /* DownloadCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639B57852809D51100F52F78 /* DownloadCollectionCell.swift */; };
+		639B578B2809E1BB00F52F78 /* CHTCollectionViewWaterfallLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 639B578A2809E1BB00F52F78 /* CHTCollectionViewWaterfallLayout */; };
+		639B578D2809E1BB00F52F78 /* CHTCollectionViewWaterfallLayoutObjC in Frameworks */ = {isa = PBXBuildFile; productRef = 639B578C2809E1BB00F52F78 /* CHTCollectionViewWaterfallLayoutObjC */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +65,7 @@
 		637E57DB2806CABA005546E8 /* Decoders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoders.swift; sourceTree = "<group>"; };
 		637E57DD2806CC57005546E8 /* JobsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsViewModel.swift; sourceTree = "<group>"; };
 		639B578028094D9500F52F78 /* HorizontalLayoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLayoutCell.swift; sourceTree = "<group>"; };
+		639B57852809D51100F52F78 /* DownloadCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadCollectionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,8 +73,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				639B578D2809E1BB00F52F78 /* CHTCollectionViewWaterfallLayoutObjC in Frameworks */,
 				636D7AED2807AF930079C3DD /* Kingfisher in Frameworks */,
 				637E57DA2806C517005546E8 /* Alamofire in Frameworks */,
+				639B578B2809E1BB00F52F78 /* CHTCollectionViewWaterfallLayout in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +127,7 @@
 		6369454728027C51007137C9 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				639B57842809D4FC00F52F78 /* DownloadCells */,
 				639B57832809510100F52F78 /* CompaniesCells */,
 				639B5782280950F400F52F78 /* HomeCells */,
 			);
@@ -205,6 +212,14 @@
 			path = CompaniesCells;
 			sourceTree = "<group>";
 		};
+		639B57842809D4FC00F52F78 /* DownloadCells */ = {
+			isa = PBXGroup;
+			children = (
+				639B57852809D51100F52F78 /* DownloadCollectionCell.swift */,
+			);
+			path = DownloadCells;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -224,6 +239,8 @@
 			packageProductDependencies = (
 				637E57D92806C517005546E8 /* Alamofire */,
 				636D7AEC2807AF930079C3DD /* Kingfisher */,
+				639B578A2809E1BB00F52F78 /* CHTCollectionViewWaterfallLayout */,
+				639B578C2809E1BB00F52F78 /* CHTCollectionViewWaterfallLayoutObjC */,
 			);
 			productName = "GithubJobs-APP";
 			productReference = 6369452C28027B80007137C9 /* GithubJobs-APP.app */;
@@ -256,6 +273,7 @@
 			packageReferences = (
 				637E57D82806C517005546E8 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				636D7AEB2807AF930079C3DD /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				639B57892809E1BB00F52F78 /* XCRemoteSwiftPackageReference "CHTCollectionViewWaterfallLayout" */,
 			);
 			productRefGroup = 6369452D28027B80007137C9 /* Products */;
 			projectDirPath = "";
@@ -301,6 +319,7 @@
 				6369454D28027FA6007137C9 /* MainCollectionVC.swift in Sources */,
 				63256E102803FD9D00135936 /* MainTabBarVC.swift in Sources */,
 				639B578128094D9500F52F78 /* HorizontalLayoutCell.swift in Sources */,
+				639B57862809D51100F52F78 /* DownloadCollectionCell.swift in Sources */,
 				637E57DC2806CABA005546E8 /* Decoders.swift in Sources */,
 				63256E122803FE2900135936 /* CompaniesVC.swift in Sources */,
 				63256E162804283D00135936 /* Extension+UIColor.swift in Sources */,
@@ -521,6 +540,14 @@
 				kind = branch;
 			};
 		};
+		639B57892809E1BB00F52F78 /* XCRemoteSwiftPackageReference "CHTCollectionViewWaterfallLayout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/chiahsien/CHTCollectionViewWaterfallLayout.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.9;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -533,6 +560,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 637E57D82806C517005546E8 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		639B578A2809E1BB00F52F78 /* CHTCollectionViewWaterfallLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 639B57892809E1BB00F52F78 /* XCRemoteSwiftPackageReference "CHTCollectionViewWaterfallLayout" */;
+			productName = CHTCollectionViewWaterfallLayout;
+		};
+		639B578C2809E1BB00F52F78 /* CHTCollectionViewWaterfallLayoutObjC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 639B57892809E1BB00F52F78 /* XCRemoteSwiftPackageReference "CHTCollectionViewWaterfallLayout" */;
+			productName = CHTCollectionViewWaterfallLayoutObjC;
 		};
 /* End XCSwiftPackageProductDependency section */
 
