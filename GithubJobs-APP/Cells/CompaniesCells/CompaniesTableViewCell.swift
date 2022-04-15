@@ -10,7 +10,7 @@ import UIKit
 class CompaniesTableViewCell: UITableViewCell {
 
     static var identifier = "CompaniesTableViewCell"
-    
+    private var swiftList: [JobInfo] = [JobInfo]()
     
     private  let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -46,25 +46,33 @@ class CompaniesTableViewCell: UITableViewCell {
         collectionView.frame = contentView.bounds  // NOT -> Bunu bu cell'de viewDidLoad içinde yazdığında çalışmıyor. Burada yaz.
     }
 }
+extension CompaniesTableViewCell {
+    func configure(with myModel: [JobInfo] ) {
+        print("myModel", myModel.count)
+        
+        self.swiftList = myModel
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.reloadData()
+        }
+    }
+}
 
 
 //MARK: - Delegate, DataSource
 extension CompaniesTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return self.swiftList.count
     }
     
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let flowCell = collectionView.dequeueReusableCell(withReuseIdentifier: HorizontalLayoutCell.identifier, for: indexPath) as! HorizontalLayoutCell
+        flowCell.backgroundColor = .white
         
-        flowCell.backgroundColor = UIColor(hue: drand48(),
-                                           saturation: 1,
-                                           brightness: 1,
-                                           alpha: 1)
-        
+        flowCell.configure(with: swiftList[indexPath.row])
         return flowCell
     }
   

@@ -66,6 +66,16 @@ class HorizontalLayoutCell: UICollectionViewCell {
 }
 
 
+//MARK: -  Fill in data
+extension HorizontalLayoutCell {
+    func configure(with jobModel: JobInfo) {
+        print("configure", jobModel)
+        self.companyNameLabel.text = jobModel.title
+    }
+}
+
+
+
 extension HorizontalLayoutCell {
     private func setConstraints(){
 
@@ -91,3 +101,4 @@ extension HorizontalLayoutCell {
                           padding: .init(top: 8, left: 0, bottom: 0, right: 0))
     }
 }
+

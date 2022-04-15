@@ -7,6 +7,12 @@
 
 import UIKit
 
+
+protocol CompaniesOutPutProtocol {
+    func saveSwiftJobsList(jobValues: [JobInfo])
+}
+
+
 enum Sections: Int {
     case Swift = 0
     case iOS = 1
@@ -20,9 +26,11 @@ enum Sections: Int {
 
 class CompaniesVC: UIViewController {
     var searchBar: UISearchBar?
-    
-    
+    var viewModel = JobsViewModel()
     let jobTitles: [String] = ["Swift","iOS", "Front End", "Full Stack", "Back End", "DevOps", "Marketing Manager"]
+    
+    private lazy var swiftJobsList: [JobInfo] = []
+    
     
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -74,6 +82,10 @@ class CompaniesVC: UIViewController {
         super.viewDidLoad()
 
         setupViews()
+//        jobViewModel.setSearchDelegate(output: self)
+//        jobViewModel.getSearchingJobs(with: "software%20development")
+        viewModel.setCompanyDelagte(output: self)
+        self.viewModel.getSearchingJobs(with: "swift")
     }
     
     private func setupViews(){
@@ -107,6 +119,18 @@ class CompaniesVC: UIViewController {
     }
     
 
+}
+
+
+//MARK: - Fill in Data
+extension CompaniesVC: CompaniesOutPutProtocol {
+    func saveSwiftJobsList(jobValues: [JobInfo]) {
+        print("jobValues",jobValues)
+        self.swiftJobsList = jobValues
+        self.tableView.reloadData()
+    }
+    
+    
 }
 
 
@@ -146,7 +170,8 @@ extension CompaniesVC: UITableViewDelegate, UITableViewDataSource {
             
             case Sections.Swift.rawValue:
                 //tableCell.configure(with: swiftJobsList)
-                tableCell.backgroundColor = .systemPink
+            tableCell.configure(with: swiftJobsList)
+            tableCell.backgroundColor = .cyan
             case Sections.iOS.rawValue:
                 tableCell.backgroundColor = .orange
             case Sections.FrontEnd.rawValue:

@@ -12,16 +12,21 @@ protocol JobsViewModelProtocol {
     func getSearchingJobs(with query: String)
     func setSearchDelegate(output: JobSearchOutputProtocol)
     var searchOutPut: JobSearchOutputProtocol? { get }
+    var companyOutPut: CompaniesOutPutProtocol? { get }
 }
 
 
 final class JobsViewModel: JobsViewModelProtocol {
     var searchOutPut: JobSearchOutputProtocol?
     var jobWebService : JobWebService
-  
+    var  companyOutPut: CompaniesOutPutProtocol?
     
     init() {
         jobWebService = JobWebService()
+    }
+    
+    func setCompanyDelagte(output: CompaniesOutPutProtocol ) {
+        companyOutPut = output
     }
     
     func setSearchDelegate(output: JobSearchOutputProtocol) {
@@ -35,6 +40,7 @@ final class JobsViewModel: JobsViewModelProtocol {
             switch result {
             case .success(let response):
                 self.searchOutPut?.saveSearchJobs(jobInfoList: response)
+                self.companyOutPut?.saveSwiftJobsList(jobValues: response)
             case .failure(let error):
                 print(error.localizedDescription)
             }
