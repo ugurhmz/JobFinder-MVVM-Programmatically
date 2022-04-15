@@ -51,6 +51,7 @@ class CompaniesVC: UIViewController {
         tableView.register(CompaniesTableViewCell.self,
                            forCellReuseIdentifier: CompaniesTableViewCell.identifier)
         tableView.backgroundColor = .white
+        tableView.separatorColor = .clear
         return tableView
     }()
     
@@ -113,8 +114,6 @@ class CompaniesVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
 
-       
-       
      
         if #available(iOS 13.0, *) {
                         let navBarAppearance = UINavigationBarAppearance()
@@ -275,6 +274,7 @@ extension CompaniesVC: UITableViewDelegate, UITableViewDataSource {
                                          height: header.bounds.height)
         header.textLabel?.textColor = .black
         header.textLabel?.text = header.textLabel?.text?.capitalized
+        
         
     }
     

@@ -17,6 +17,7 @@ class CompaniesTableViewCell: UITableViewCell {
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
+        cv.showsHorizontalScrollIndicator = false
         cv.register(HorizontalLayoutCell.self,
                     forCellWithReuseIdentifier: HorizontalLayoutCell.identifier)
         return cv
@@ -36,7 +37,8 @@ class CompaniesTableViewCell: UITableViewCell {
         contentView.addSubview(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.backgroundColor = .systemBackground
+        collectionView.backgroundColor = .white
+       
         
     }
     
@@ -77,6 +79,10 @@ extension CompaniesTableViewCell: UICollectionViewDelegate, UICollectionViewData
     }
   
     
+    
+    
+    
+    
 }
 
 extension CompaniesTableViewCell: UICollectionViewDelegateFlowLayout {
@@ -84,4 +90,9 @@ extension CompaniesTableViewCell: UICollectionViewDelegateFlowLayout {
         return CGSize(width: contentView.frame.width / 2.5,
                       height: contentView.frame.height)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 55
+    }
+    
 }

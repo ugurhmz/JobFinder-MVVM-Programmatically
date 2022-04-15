@@ -56,7 +56,10 @@ class HorizontalLayoutCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(imgCompany)
-    
+        layer.borderWidth = 2
+        layer.borderColor = UIColor.lightGray.cgColor
+        layer.cornerRadius = 10
+        
        setConstraints()
     }
     
