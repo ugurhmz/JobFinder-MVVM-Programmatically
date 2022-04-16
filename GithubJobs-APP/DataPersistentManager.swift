@@ -60,4 +60,21 @@ class DataPersistentManager {
         
     }
     
+    
+    // GET ALL
+    func getDatasFromDB(completion: @escaping (Result<[GithubEntity]>) -> Void) {
+        
+        let request: NSFetchRequest<GithubEntity>
+        request = GithubEntity.fetchRequest()
+        
+        do {
+            let jobDBDatas = try self.getContext().fetch(request)
+            completion(.success(jobDBDatas))
+        } catch {
+            completion(.failure(DataBaseError.fetchDBError as! Error))
+        }
+        
+    }
+    
+    
 }

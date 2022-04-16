@@ -7,8 +7,16 @@
 
 import UIKit
 
-class DownloadedListVC: UIViewController {
+protocol DownloadOutPutProtocol {
+    func saveData(downloadJobInfos: [GithubEntity])
+}
 
+class DownloadedListVC: UIViewController {
+    
+    private var downloadedList = [GithubEntity]()
+    lazy var downloadViewModel = DownloadViewModel()
+    
+    
     
     private let tableView: UITableView = {
         let tv = UITableView()
@@ -18,6 +26,7 @@ class DownloadedListVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        downloadViewModel.setDownloadDelegate(output: self)
         setupViews()
     
     }
@@ -30,12 +39,34 @@ class DownloadedListVC: UIViewController {
         tableView.backgroundColor = .lightGray
         tableView.fillSuperview()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        downloadViewModel.getlLocalStorageDownloadDatas()
+        self.tableView.reloadData()
+    }
+    
+    
 }
 
+
+//MARK: -
+extension DownloadedListVC: DownloadOutPutProtocol {
+    
+    func saveData(downloadJobInfos: [GithubEntity]) {
+        print("downloaded", downloadJobInfos)
+        self.downloadedList = downloadJobInfos
+        self.tableView.reloadData()
+    }
+    
+}
+
+
+//MARK: -  Delegate, DataSource
 extension DownloadedListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.downloadedList.count
     }
     
     
@@ -43,6 +74,11 @@ extension DownloadedListVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: DownloadTableCell.identifier, for: indexPath) as! DownloadTableCell
         
         cell.backgroundColor = .white
+        
+        cell.companyNameLabel.text = self.downloadedList[indexPath.row].companyName
+        
+        //cell.configureWithEntity(jobInfo: downloadedList[indexPath.row])
+        
         return cell
     }
     
@@ -52,3 +88,5 @@ extension DownloadedListVC: UITableViewDelegate, UITableViewDataSource {
     
     
 }
+
+

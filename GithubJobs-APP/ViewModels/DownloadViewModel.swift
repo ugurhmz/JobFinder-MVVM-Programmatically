@@ -8,7 +8,20 @@
 import Foundation
 
 
-class DownloadViewModel {
+protocol DownloadViewModelProtocol {
+    var downloadOutPut: DownloadOutPutProtocol? { get }
+    func setDownloadDelegate(output: DownloadOutPutProtocol)
+}
+
+
+class DownloadViewModel: DownloadViewModelProtocol {
+    
+    var downloadOutPut: DownloadOutPutProtocol?
+    
+    func setDownloadDelegate(output: DownloadOutPutProtocol) {
+        self.downloadOutPut = output
+    }
+    
     
     
     // CREATE
@@ -25,7 +38,19 @@ class DownloadViewModel {
         }
     }
     
+    
     // READ
+    func getlLocalStorageDownloadDatas(){
+        DataPersistentManager.shared.getDatasFromDB { [weak self] result in
+            switch result {
+            case .success(let jobInfoDBDatas):
+                self?.downloadOutPut?.saveData(downloadJobInfos: jobInfoDBDatas)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     
     // DELETE
 }
