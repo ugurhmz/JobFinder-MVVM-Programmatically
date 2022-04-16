@@ -68,8 +68,6 @@ class DownloadedListVC: UIViewController {
 
            }
         
- 
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,11 +80,22 @@ class DownloadedListVC: UIViewController {
         navigationItem.rightBarButtonItems = [rightBarButton]
         
         rightBarButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.systemYellow, NSAttributedString.Key.font: UIFont(name: "Chalkduster", size: 27.0)!], for: .normal)
-        
+        navigationItem.leftBarButtonItems = [
+                    UIBarButtonItem(image: UIImage(systemName: "trash.slash"), style: .done,
+                                    target: self, action: #selector(deleteAllDownloaded))]
+                navigationController?.navigationBar.tintColor = .red
        
         self.tableView.reloadData()
     }
     
+    
+       @objc func deleteAllDownloaded(){
+           DataPersistentManager.shared.deleteAllFromDB()
+           DispatchQueue.main.async {
+               self.downloadViewModel.getlLocalStorageDownloadDatas()
+               self.tableView.reloadData()
+           }
+       }
     
 }
 

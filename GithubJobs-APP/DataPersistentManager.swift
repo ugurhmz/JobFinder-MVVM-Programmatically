@@ -81,7 +81,6 @@ class DataPersistentManager {
     //Delete
        func deleteDataFromDB(entityModel: GithubEntity,
                              completion: @escaping (Result<Void>) -> Void) {
-           
            getContext().delete(entityModel)
            do {
                try getContext().save()
@@ -93,5 +92,18 @@ class DataPersistentManager {
            
        }
     
+    
+    // Delete All
+       func deleteAllFromDB(){
+           let fetchReq = NSFetchRequest<NSFetchRequestResult>(entityName: "GithubEntity")
+           let deleteAllReq = NSBatchDeleteRequest(fetchRequest: fetchReq)
+           
+           do {
+               try  getContext().execute(deleteAllReq)
+               print()
+           } catch {
+               print("err")
+           }
+       }
     
 }
