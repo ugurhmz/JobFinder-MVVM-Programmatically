@@ -15,7 +15,9 @@ class DetailsVC: UIViewController {
     var companyURL = "https://www.youtube.com.tr/"
     var applyURL = "https://www.google.com.tr/"
     var zoomGesture = UIPinchGestureRecognizer()
+    var myModel: JobInfo?
     
+    var downloadVM = DownloadViewModel()
     
     private let companyImage = AspectFitImageView(image: UIImage(systemName: "house"), cornerRadius: 12)
     
@@ -150,6 +152,21 @@ class DetailsVC: UIViewController {
         NotificationCenter.default.post(name: NSNotification.Name("refreshTableView"),
                                         object: myNumber)
       
+        guard let newModel = self.myModel else {
+            return
+        }
+        
+        self.downloadVM.createBookMarkWithIndexPath(bookmarkItem: newModel)
+        
+        let alert = UIAlertController(title: nil,
+                                      message: "Job Saved",
+                                      preferredStyle: .actionSheet)
+        alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = .green.withAlphaComponent(0.2)
+        alert.view.tintColor = .black
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true)
+        
+        self.applyButton.isHidden = true
     }
     
     
@@ -199,6 +216,7 @@ class DetailsVC: UIViewController {
 extension DetailsVC {
     
     public func configure(with model: JobInfo ) {
+        self.myModel = model
         self.companyLabel.text = model.companyName
         guard let url = URL(string: model.companyLogo ?? "") else { return }
         self.companyImage.kf.setImage(with: url)

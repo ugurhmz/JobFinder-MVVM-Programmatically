@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 
 class HomeCollectionCell: UICollectionViewCell {
-    
+    var clickMode = false
     static var identifier = "HomeCollectionCell"
     var stackView = UIStackView()
     
@@ -87,8 +87,13 @@ class HomeCollectionCell: UICollectionViewCell {
     var callBackAddBookmark: ( () -> ())?
     
     @objc func bookmarkClickHandle(){
-   
+        bookmarkIconBtn.isHidden = !bookmarkIconBtn.isHidden
+        
+        NotificationCenter.default.post(name: NSNotification.Name("bookmark"),
+                                        object: bookmarkIconBtn.isHidden)
+        
         self.callBackAddBookmark?()
+       
     }
     
     
@@ -98,6 +103,11 @@ class HomeCollectionCell: UICollectionViewCell {
         super.init(frame: frame)
         setupViews()
         setConstraints()
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("bookmark"), object: bookmarkIconBtn.isHidden, queue: nil) { _ in
+            self.bookmarkIconBtn.isHidden = false
+        }
+        
     }
     
     

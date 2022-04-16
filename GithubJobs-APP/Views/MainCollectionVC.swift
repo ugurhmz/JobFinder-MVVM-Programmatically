@@ -13,7 +13,7 @@ protocol JobSearchOutputProtocol {
 }
 
 class MainCollectionVC: UICollectionViewController{
-    
+   
     private let searchController = UISearchController(searchResultsController: nil)
     
     var downloadVM = DownloadViewModel()
@@ -213,11 +213,6 @@ extension MainCollectionVC: JobSearchOutputProtocol {
             self.collectionView.reloadData()
         }
     }
-    
-    @objc func clickHand(){
-        print("xx")
-    }
-    
 }
 
 
@@ -312,7 +307,16 @@ extension MainCollectionVC {
         // Cell içindeki bookmarkBtn tıklanınca, burası tetikleniyor.
         homeCell.callBackAddBookmark = {
             print("callback", indexPath.row)
+            
             self.downloadVM.createBookMarkWithIndexPath(bookmarkItem: self.jobDataList[indexPath.row])
+            
+            let alert = UIAlertController(title: nil,
+                                          message: "Job Saved",
+                                          preferredStyle: .actionSheet)
+            alert.view.subviews.first?.subviews.first?.subviews.first?.backgroundColor = .green.withAlphaComponent(0.2)
+            alert.view.tintColor = .black
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
         }
         
         homeCell.layer.cornerRadius = 25
