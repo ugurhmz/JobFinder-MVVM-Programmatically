@@ -32,7 +32,10 @@ enum Sections: Int {
 
 
 class CompaniesVC: UIViewController {
-    var searchBar: UISearchBar?
+    
+    let searchBar = UISearchBar()
+    
+    var jobViewModel = JobsViewModel()
     var viewModel = JobsViewModel()
     let jobTitles: [String] = ["Swift","iOS", "Front End", "Full Stack", "Back End", "DevOps", "Marketing Manager"]
     
@@ -55,49 +58,11 @@ class CompaniesVC: UIViewController {
         return tableView
     }()
     
-  
-    
-    @objc func searchingFunc(shouldShow: Bool){
-         
-           if shouldShow {
-               let searchBar = UISearchBar()
-               searchBar.delegate = self
-               searchBar.sizeToFit()
-               searchBar.showsCancelButton = true
-               searchBar.becomeFirstResponder() // Icona tıklayınca, searchbar focus yapıyor.
-               searchBar.tintColor = .systemYellow
-               searchBar.searchTextField.backgroundColor = .white
-               searchBar.searchTextField.textColor = .black
-               
-               navigationItem.rightBarButtonItem = nil
-               navigationItem.titleView = searchBar
-           } else {
-               
-               navigationItem.titleView = nil
-               configureSearchBarButton()
-              
-           }
-       }
-       
-       
-       @objc func showSearchBar(){
-           searchingFunc(shouldShow: true)
-       }
-       
-      
-    
-    func configureSearchBarButton(){
-           navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(showSearchBar))
-           navigationItem.rightBarButtonItem?.tintColor = .white
-       }
        
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupViews()
-//        jobViewModel.setSearchDelegate(output: self)
-//        jobViewModel.getSearchingJobs(with: "software%20development")
         viewModel.setCompanyDelagte(output: self)
         viewModel.getSearchingJobs(with: "swift")
         viewModel.getSearchingJobs(with: "ios%20developer")
@@ -106,6 +71,9 @@ class CompaniesVC: UIViewController {
         viewModel.getSearchingJobs(with: "full%20stack")
         viewModel.getSearchingJobs(with: "devops")
         viewModel.getSearchingJobs(with: "marketing%20manager")
+        
+    
+        
     }
     
     private func setupViews(){
@@ -128,11 +96,9 @@ class CompaniesVC: UIViewController {
                         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
 
                         navigationController?.navigationBar.prefersLargeTitles = false
-                        navigationItem.title = "Searching Jobs.."
+                        navigationItem.title = "Jobs Opportunities"
 
         }
-        
-        self.configureSearchBarButton()
         
     }
     
@@ -190,8 +156,6 @@ extension CompaniesVC {
                          trailing: view.trailingAnchor)
     }
 }
-
-
 
 //MARK: - Delegate, DataSource
 extension CompaniesVC: UITableViewDelegate, UITableViewDataSource {
@@ -251,15 +215,35 @@ extension CompaniesVC: UITableViewDelegate, UITableViewDataSource {
     // Header Title
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
-//        switch section {
-//
-//            case Sections.Swift.rawValue:
-//            return "\(Sections.Swift.rawValue) -> \(swiftJobsList.count)"
-//
-//            default:
-//                return "UITableViewCell()"
-//        }
-        return jobTitles[section]
+        switch section {
+
+            case Sections.Swift.rawValue:
+            return "Swift || \(swiftJobsList.count)"
+
+            
+            case Sections.iOS.rawValue:
+            return "iOS || \(iosList.count)"
+            
+            case Sections.FrontEnd.rawValue:
+            return "Front End || \(frontList.count)"
+            
+            case Sections.FullStack.rawValue:
+            return "Full Stack || \(fullStackList.count)"
+            
+            case Sections.BackEnd.rawValue:
+            return "Back End || \(backendList.count)"
+            
+            case Sections.DevOps.rawValue:
+            return "Devops  || \(devopsList.count)"
+                
+            case Sections.MarketingManager.rawValue:
+            return "Marketing Manager || \(marketingList.count)"
+            
+            
+            default:
+                return "-"
+        }
+        
     }
     
     
@@ -280,18 +264,6 @@ extension CompaniesVC: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
-
-
-//MARK: - SearchBar Delegate
-extension CompaniesVC: UISearchBarDelegate {
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        print("click")
-        self.searchingFunc(shouldShow: false)
-        
-    }
-}
-
 
 
 //MARK: -  Navigate

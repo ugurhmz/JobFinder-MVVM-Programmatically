@@ -247,7 +247,7 @@ extension MainCollectionVC: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         DispatchQueue.main.async {
-            self.jobViewModel.getSearchingJobs(with: "swift")
+            self.jobViewModel.getSearchingJobs(with: "software%20development")
             self.collectionView.reloadData()
         }
     }
