@@ -29,6 +29,16 @@ class DownloadedListVC: UIViewController {
         downloadViewModel.setDownloadDelegate(output: self)
         setupViews()
        
+        
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("refreshTableView"), object: nil, queue: nil) { _ in
+                   print("NotificationCenter")
+                   self.tableView.reloadData()
+               }
     }
     
     private func setupViews() {
@@ -127,7 +137,30 @@ extension DownloadedListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     
-    
+    func tableView(_ tableView: UITableView,
+                   commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath) {
+        
+        switch editingStyle {
+        case .delete:
+            
+            DataPersistentManager.shared.deleteDataFromDB(entityModel: downloadedList[indexPath.row]) { [weak self] result in
+                switch result {
+                case .success():
+                    print("Deleted success")
+                    self?.tableView.reloadData()
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+                self?.downloadedList.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                self?.tableView.reloadData()
+                
+            }
+        default:
+            break
+        }
+    }
     
 
 }

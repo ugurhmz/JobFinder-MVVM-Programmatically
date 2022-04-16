@@ -78,5 +78,20 @@ class DataPersistentManager {
         
     }
     
+    //Delete
+       func deleteDataFromDB(entityModel: GithubEntity,
+                             completion: @escaping (Result<Void>) -> Void) {
+           
+           getContext().delete(entityModel)
+           do {
+               try getContext().save()
+               completion(.success(()))
+               
+           } catch {
+               completion(.failure(DataBaseError.deletedError as! Error))
+           }
+           
+       }
+    
     
 }
