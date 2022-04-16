@@ -108,7 +108,9 @@ class DetailsVC: UIViewController {
         setConstraints()
         addTargetConfig()
         view.backgroundColor = .white
-       
+        
+        
+        
     }
     
     private func setupViews() {

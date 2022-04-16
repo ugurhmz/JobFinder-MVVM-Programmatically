@@ -82,7 +82,7 @@ class MainCollectionVC: UICollectionViewController{
       
         segmentedControlConfigure()
 
-        collectionView.backgroundColor = .lightGray
+        collectionView.backgroundColor = .lightGray.withAlphaComponent(0.3)
         collectionView.register(HomeCollectionCell.self,
                                 forCellWithReuseIdentifier: HomeCollectionCell.identifier)
         
@@ -116,7 +116,7 @@ class MainCollectionVC: UICollectionViewController{
             var frame: CGRect = label.frame
             frame.size.height += CGFloat(Int(0.4 * fontSize))
             frame.size.width =  frame.size.width + CGFloat(Int(fontSize) +   15)
-            label.frame =  CGRect(x: 15, y: -10, width: 30, height: 30)
+            label.frame =  CGRect(x: view.frame.width - 60, y: -20, width: 30, height: 30)
 
             // Set radius and clip to bounds
             label.layer.cornerRadius = frame.size.height / 2.0
@@ -162,7 +162,7 @@ class MainCollectionVC: UICollectionViewController{
             let navBarAppearance = UINavigationBarAppearance()
             //navBarAppearance.configureWithOpaqueBackground()
 
-            navBarAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,NSAttributedString.Key.font: UIFont(name: "Chalkduster", size: 32.0)!]
+             navBarAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemYellow,NSAttributedString.Key.font: UIFont(name: "Charter-Black", size: 30)!]
            
              navigationController?.navigationBar.barStyle = .black
             navigationController?.navigationBar.standardAppearance = navBarAppearance
@@ -170,7 +170,7 @@ class MainCollectionVC: UICollectionViewController{
             navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
 
             navigationController?.navigationBar.prefersLargeTitles = false
-            navigationItem.title = "Job Finder®"
+            navigationItem.title = "Job Finde®"
             
             }
          
@@ -188,21 +188,36 @@ class MainCollectionVC: UICollectionViewController{
 }
 
 
-//MARK: -
 
+//MARK: -
 extension MainCollectionVC: JobSearchOutputProtocol {
-    
+  
     func saveSearchJobs(jobInfoList: [JobInfo]) {
         DispatchQueue.main.async {
             print("result", jobInfoList.count)
             self.jobDataList = jobInfoList
            
-            self.navigationController?.navigationBar.addSubview(self.addCounter(count: jobInfoList.count))
+            
+            let btnJobCountBadge = UIButton(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+            btnJobCountBadge.setTitle("\(jobInfoList.count)", for: .normal)
+            btnJobCountBadge.backgroundColor = UIColor.black
+            
+            btnJobCountBadge.layer.cornerRadius = 4.0
+            btnJobCountBadge.layer.masksToBounds = true
+
+            
+            let rightBarButton = UIBarButtonItem(customView: btnJobCountBadge)
+            self.navigationItem.rightBarButtonItems = [rightBarButton]
             
             self.segmentedControl.setTitle("\(self.jobTitles[self.segmentedControl.selectedSegmentIndex])  \(self.jobDataList.count)", forSegmentAt: self.segmentedControl.selectedSegmentIndex)
             self.collectionView.reloadData()
         }
     }
+    
+    @objc func clickHand(){
+        print("xx")
+    }
+    
 }
 
 
@@ -309,6 +324,7 @@ extension MainCollectionVC {
         print("myrow",self.jobDataList[indexPath.row])
         detailsVC.configure(with: self.jobDataList[indexPath.row])
         navigationController?.pushViewController(detailsVC, animated: true)
+       
     }
      
 }

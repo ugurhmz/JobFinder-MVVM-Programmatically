@@ -39,11 +39,41 @@ class DownloadedListVC: UIViewController {
         tableView.backgroundColor = .lightGray
         
         tableView.fillSuperview()
+        
+        
+           if #available(iOS 13.0, *) {
+                           let navBarAppearance = UINavigationBarAppearance()
+                           //navBarAppearance.configureWithOpaqueBackground()
+
+                           navBarAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemYellow,
+                                NSAttributedString.Key.font: UIFont(name: "Chalkduster", size: 27.0)!]
+                           navBarAppearance.backgroundColor = .black
+                           navigationController?.navigationBar.barStyle = .black
+                           navigationController?.navigationBar.standardAppearance = navBarAppearance
+                           navigationController?.navigationBar.compactAppearance = navBarAppearance
+                           navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+
+                           navigationController?.navigationBar.prefersLargeTitles = false
+               navigationItem.title = "Download List"
+
+           }
+        
+ 
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         downloadViewModel.getlLocalStorageDownloadDatas()
+        let rightBarButton = UIBarButtonItem(title: "\(self.downloadedList.count)",
+                                             style: .plain,
+                                             target: self, action: nil)
+        rightBarButton.tintColor = .white
+        navigationItem.rightBarButtonItems = [rightBarButton]
+        
+        rightBarButton.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.systemYellow, NSAttributedString.Key.font: UIFont(name: "Chalkduster", size: 27.0)!], for: .normal)
+        
+       
         self.tableView.reloadData()
     }
     
