@@ -25,7 +25,6 @@
 		637E57CC28065503005546E8 /* DataPersistentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E57CB28065503005546E8 /* DataPersistentManager.swift */; };
 		637E57CF28065634005546E8 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E57CE28065634005546E8 /* Result.swift */; };
 		637E57D128066948005546E8 /* JobSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E57D028066948005546E8 /* JobSearchModel.swift */; };
-		637E57D328067EFA005546E8 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E57D228067EFA005546E8 /* BookModel.swift */; };
 		637E57D52806907A005546E8 /* DownloadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E57D42806907A005546E8 /* DownloadViewModel.swift */; };
 		637E57D72806C2E8005546E8 /* JobWebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637E57D62806C2E8005546E8 /* JobWebService.swift */; };
 		637E57DA2806C517005546E8 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 637E57D92806C517005546E8 /* Alamofire */; };
@@ -58,7 +57,6 @@
 		637E57CB28065503005546E8 /* DataPersistentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistentManager.swift; sourceTree = "<group>"; };
 		637E57CE28065634005546E8 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		637E57D028066948005546E8 /* JobSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobSearchModel.swift; sourceTree = "<group>"; };
-		637E57D228067EFA005546E8 /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
 		637E57D42806907A005546E8 /* DownloadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadViewModel.swift; sourceTree = "<group>"; };
 		637E57D62806C2E8005546E8 /* JobWebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobWebService.swift; sourceTree = "<group>"; };
 		637E57DB2806CABA005546E8 /* Decoders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoders.swift; sourceTree = "<group>"; };
@@ -138,7 +136,6 @@
 			isa = PBXGroup;
 			children = (
 				637E57D028066948005546E8 /* JobSearchModel.swift */,
-				637E57D228067EFA005546E8 /* BookModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -304,7 +301,6 @@
 				636D7AF32808753E0079C3DD /* Extension+HTMLString.swift in Sources */,
 				637D1A652802C9F8002AD92C /* Extension+UIView.swift in Sources */,
 				637E57D128066948005546E8 /* JobSearchModel.swift in Sources */,
-				637E57D328067EFA005546E8 /* BookModel.swift in Sources */,
 				637E57C628065287005546E8 /* GithubEntity.xcdatamodeld in Sources */,
 				637E57CC28065503005546E8 /* DataPersistentManager.swift in Sources */,
 				6369454F28028106007137C9 /* HomeCollectionCell.swift in Sources */,

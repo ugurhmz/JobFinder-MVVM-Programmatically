@@ -28,7 +28,7 @@ class DownloadedListVC: UIViewController {
         super.viewDidLoad()
         downloadViewModel.setDownloadDelegate(output: self)
         setupViews()
-    
+       
     }
     
     private func setupViews() {
@@ -37,6 +37,7 @@ class DownloadedListVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.backgroundColor = .lightGray
+        
         tableView.fillSuperview()
     }
     
@@ -73,20 +74,28 @@ extension DownloadedListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DownloadTableCell.identifier, for: indexPath) as! DownloadTableCell
         
-        cell.backgroundColor = .white
+        cell.backgroundColor = .lightGray
         
-        cell.companyNameLabel.text = self.downloadedList[indexPath.row].companyName
+        cell.configureWithEntity(jobEntity: downloadedList[indexPath.row])
         
-        //cell.configureWithEntity(jobInfo: downloadedList[indexPath.row])
+        cell.layer.borderWidth = 1
+        cell.layer.borderColor = UIColor.white.cgColor
+        
+        cell.layer.cornerRadius = 15
+        
+        cell.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 180
     }
     
     
+    
+    
+
 }
 
 

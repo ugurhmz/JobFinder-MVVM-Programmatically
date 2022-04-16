@@ -44,13 +44,15 @@ class DataPersistentManager {
         bookmarkModel.title = entityModel.title
         bookmarkModel.companyLogo = entityModel.companyLogo
         bookmarkModel.companyName = entityModel.companyName
-       // bookmarkModel.salary = entityModel.salary?.rawValue
+        bookmarkModel.salary = entityModel.salary 
         bookmarkModel.url = entityModel.url
-       // bookmarkModel.jobType = entityModel.jobType?.rawValue
+        bookmarkModel.jobType = entityModel.jobType
+        
+        print("entityModel.salary", entityModel.salary )
         
         
         do {
-                  print("entityModel",entityModel)
+                  
                   try getContext().save()
                   completion(.success(()))
                 

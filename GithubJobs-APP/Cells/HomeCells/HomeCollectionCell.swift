@@ -52,12 +52,22 @@ class HomeCollectionCell: UICollectionViewCell {
         
         return label
     }()
+    private let salaryLabel: UILabel = {
+        let label = UILabel()
+        label.text = "50$"
+        label.numberOfLines = 0
+        label.font = .systemFont(ofSize: 15)
+        label.textColor = .black
+        
+        return label
+    }()
     
     private let locationLabel: UILabel = {
         let label = UILabel()
         label.text = "Boston, MA"
         label.font = .systemFont(ofSize: 15)
-        label.numberOfLines = 0
+        label.numberOfLines = 2
+
         label.textColor = .black
       
         return label
@@ -123,22 +133,23 @@ extension HomeCollectionCell {
         self.companyNameLabel.text = myJobModel.companyName
         guard let url = URL(string: myJobModel.companyLogo ?? "") else { return }
         
-       // let workType = myJobModel.jobType?.rawValue
         
-//        if ((workType?.contains("full_time")) != nil) {
-//            self.workTimeLabel.text = "Full Time"
-//        } else if ((workType?.contains("full_time")) != nil) {
-//            self.workTimeLabel.text = "Part Time"
-//        } else {
-//            self.workTimeLabel.text = workType
-//        }
-//
-//
+        
+            
+        if myJobModel.jobType == "full_time" {
+            self.workTimeLabel.text = "Full Time"
+        } else if myJobModel.jobType == "part_time" {
+            self.workTimeLabel.text = "Part Time"
+        } else  if  myJobModel.jobType == "contract" {
+            self.workTimeLabel.text = "Contract"
+        } else {
+            self.workTimeLabel.text = ""
+        }
         
         self.imgCompany.kf.setImage(with: url)
         self.locationLabel.text = myJobModel.candidateRequiredLocation
         self.positionLabel.text = myJobModel.title
-        //self.workTimeLabel.text = myJobModel.jobType?.rawValue
+        self.salaryLabel.text = myJobModel.salary
         
     }
 }
@@ -155,7 +166,7 @@ extension HomeCollectionCell {
                           size: .init(width: 70, height: 70))
 
         
-        let stackView = UIStackView(arrangedSubviews: [companyNameLabel,locationLabel, workTimeLabel])
+        let stackView = UIStackView(arrangedSubviews: [companyNameLabel,locationLabel, workTimeLabel, salaryLabel])
             addSubview(stackView)
         stackView.anchor(top: topAnchor,
                              leading: leadingAnchor,
