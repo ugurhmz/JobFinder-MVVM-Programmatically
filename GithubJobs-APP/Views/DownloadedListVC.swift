@@ -87,6 +87,10 @@ extension DownloadedListVC: DownloadOutPutProtocol {
     func saveData(downloadJobInfos: [GithubEntity]) {
         print("downloaded", downloadJobInfos)
         self.downloadedList = downloadJobInfos
+        
+        NotificationCenter.default.post(name: NSNotification.Name("applyBtn"),
+                                        object: downloadJobInfos.count)
+        
         self.tableView.reloadData()
     }
     

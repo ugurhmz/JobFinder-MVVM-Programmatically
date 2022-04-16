@@ -38,7 +38,7 @@ class MainTabBarVC: UITabBarController {
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(badgeINC),
-                                               name: NSNotification.Name("refreshTableView"),
+                                               name: NSNotification.Name("applyBtn"),
                                                object: nil)
     }
     

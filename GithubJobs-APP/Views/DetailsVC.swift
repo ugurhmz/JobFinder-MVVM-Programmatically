@@ -148,9 +148,9 @@ class DetailsVC: UIViewController {
     
     @objc func applyButtonHandle(){
         
-        self.myNumber += 1
-        NotificationCenter.default.post(name: NSNotification.Name("refreshTableView"),
-                                        object: myNumber)
+//        self.myNumber += 1
+//        NotificationCenter.default.post(name: NSNotification.Name("applyBtn"),
+//                                        object: myNumber)
       
         guard let newModel = self.myModel else {
             return
