@@ -47,6 +47,7 @@ class DataPersistentManager {
         bookmarkModel.salary = entityModel.salary 
         bookmarkModel.url = entityModel.url
         bookmarkModel.jobType = entityModel.jobType
+        bookmarkModel.candidateRequiredLocation = entityModel.candidateRequiredLocation
         
         print("entityModel.salary", entityModel.salary )
         

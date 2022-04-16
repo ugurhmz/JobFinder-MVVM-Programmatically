@@ -123,7 +123,7 @@ extension DownloadTableCell {
         }
         
         self.companyNameLabel.text = jobEntity.companyName
-        
+        self.locationLabel.text = jobEntity.candidateRequiredLocation
     }
 }
 
